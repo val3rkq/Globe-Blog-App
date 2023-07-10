@@ -1,0 +1,79 @@
+{
+  "login_text": "Welcome back! You've been missed!",
+  "email": "Email",
+  "password": "Password",
+  "forgot_password": "Forgot Password",
+  "sign_in": "Sign In",
+  "not_a_member": "Not a member?",
+  "register_now": "Register now",
+  "continue_with": "Or continue with",
+
+  "register_text": "Let's create an account for you",
+  "confirm_password": "Confirm Password",
+  "continue_registration": "Continue",
+  "validation_error_empty_fields": "Some fields are empty..",
+  "already_member": "Already have an account?",
+  "login_now": "Login now",
+
+  "send_us_your_email_to_reset_password": "Send us your email to reset password",
+  "reset_password_text": "Reset Password",
+  "password_sent": "Password reset link sent! Check your email",
+
+  "username_text": "Now let's think about the username and displayName for your account. You can also write a bio about yourself..",
+  "username": "Username",
+  "displayname": "DisplayName",
+  "bio": "Bio",
+  "sign_up": "Sign Up",
+  "welcome": "Welcome!",
+
+  "error": "Error..",
+
+  "loading": "Loading..",
+  "start_the_dialog": "Start the dialog ...",
+  "hello": "Hello!",
+  "message": "Message..",
+
+  "find_users_text": "Find interesting people..",
+  "search": "Search by username..",
+  "search_notes": "Search notes..",
+  "user_is_not_found": "User is not found..",
+  "note_is_not_found": "Note is not found..",
+  "online": "online",
+
+  "posts": "Posts",
+  "followers": "Followers",
+  "followings": "Followings",
+  "log_out": "Log out",
+
+  "edit_profile": "Edit Profile",
+
+  "upload_img": "Upload new image",
+
+  "settings": "Settings",
+
+  "validation_email": "Incorrect email",
+  "validation_email_empty": "Email is empty..",
+
+  "validation_username_empty": "Username is empty",
+  "validation_username_too_big": "Username is too big",
+  "validation_username_is_taken": "Username is already taken",
+  "validation_displayname_empty": "DisplayName is empty",
+  "validation_displayname_too_big": "DisplayName is too big",
+  "different_passwords": "Passwords are different",
+
+  "options": "Options",
+  "replies": "replies",
+  "your_comment": "Your comment..",
+  "edit": "Edit",
+  "all_replies": "All Replies",
+  "delete": "Delete",
+  "follower": "Follower",
+  "following": "Following",
+  "no_comments": "No comments",
+  "no_users": "No ",
+
+  "saved_posts": "Saved Posts",
+  "liked_posts": "Liked Posts",
+
+  "developing": "This page is under development now..."
+}

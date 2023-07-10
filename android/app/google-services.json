@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "362539290497",
+    "project_id": "globe-blog-app",
+    "storage_bucket": "globe-blog-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:362539290497:android:bf630026f703a4524da280",
+        "android_client_info": {
+          "package_name": "com.example.globe"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "362539290497-submdtfjsrufl4vopgltffkuh265hmgi.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBU1XYK2GqNKUbr5rbDxHkQenFZtTQUGrs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "362539290497-submdtfjsrufl4vopgltffkuh265hmgi.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
