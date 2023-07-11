@@ -5,6 +5,7 @@ class HistoryTile extends StatelessWidget {
   const HistoryTile({
     Key? key,
     required this.title,
+    required this.photo,
     required this.onTap,
     required this.onDelete,
     required this.isFollower,
@@ -16,6 +17,7 @@ class HistoryTile extends StatelessWidget {
 
   final bool isFollower;
   final bool isFollowing;
+  final String photo;
   final void Function()? onDelete;
 
   @override
@@ -30,14 +32,25 @@ class HistoryTile extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           children: [
             Container(
-              width: 35,
-              height: 35,
+              width: 40,
+              height: 40,
               decoration: const BoxDecoration(
-                color: Colors.lime,
                 shape: BoxShape.circle,
+                color: Colors.pink
               ),
+              child: photo.isEmpty
+                  ? Center(
+                      child: Text(
+                        title.toString().toUpperCase()[0],
+                        style: const TextStyle(
+                            fontSize: 20, color: Colors.white54),
+                      ),
+                    )
+                  : CircleAvatar(
+                      backgroundImage: Image.network(photo).image,
+                    ),
             ),
-            SizedBox(
+            const SizedBox(
               width: 15,
             ),
             Row(

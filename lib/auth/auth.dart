@@ -48,7 +48,7 @@ class Auth extends ChangeNotifier {
         'password': password,
         'friends': [],
         'bio': '',
-        'photo': null,
+        'photo': '',
         // getting data when user was online last time
         'status': 'offline',
       });
@@ -179,11 +179,9 @@ class Auth extends ChangeNotifier {
     }
   }
 
-  // todo: photo
   Future<void> setUsernameAndBio(
-      String username, String displayName, String bio, var photo) async {
+      String username, String displayName, String bio, String? photo) async {
     try {
-      print(username.toLowerCase().trim().replaceAll(' ', '_'));
       // create new doc for new user in firebase
       await _firebaseFirestore
           .collection('users')
@@ -192,7 +190,7 @@ class Auth extends ChangeNotifier {
         'username': username.toLowerCase().trim().replaceAll(' ', '_'),
         'displayName': displayName,
         'bio': bio,
-        'photo': photo,
+        'photo': photo ?? '',
         'status': 'online'
       });
     } on FirebaseAuthException catch (error) {

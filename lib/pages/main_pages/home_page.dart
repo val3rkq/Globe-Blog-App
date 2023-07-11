@@ -36,7 +36,6 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
   // controllers
   TextEditingController postController = TextEditingController();
 
-
   bool editMode = false;
   int indexToEdit = -1;
 
@@ -109,8 +108,6 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
       indexToEdit = -1;
     });
   }
-
-  void uploadProfileImage() {}
 
   @override
   void initState() {
@@ -205,21 +202,21 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
 
                       // userphoto
                       Container(
-                          decoration: BoxDecoration(
-                            gradient: LinearGradient(
-                              colors: [
-                                mainColor,
-                                mainColorAccent,
-                              ],
-                              begin: Alignment.topCenter,
-                              end: Alignment.bottomCenter,
-                            ),
-                            shape: BoxShape.circle,
+                        decoration: BoxDecoration(
+                          gradient: LinearGradient(
+                            colors: [
+                              mainColor,
+                              mainColorAccent,
+                            ],
+                            begin: Alignment.topCenter,
+                            end: Alignment.bottomCenter,
                           ),
-                          width: 50,
-                          height: 50,
-                          child: user['photo'] ??
-                              Center(
+                          shape: BoxShape.circle,
+                        ),
+                        width: 50,
+                        height: 50,
+                        child: user['photo'].isEmpty
+                            ? Center(
                                 // show initial of username
                                 child: Text(
                                   user['displayName'][0]
@@ -230,9 +227,12 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
                                     fontSize: 25,
                                   ),
                                 ),
+                              )
+                            : CircleAvatar(
+                                backgroundImage:
+                                    Image.network(user['photo']).image,
                               ),
-                        ),
-
+                      ),
                     ],
                   ),
 
@@ -342,7 +342,9 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
                 hintText: "New post",
               ),
             ),
-            const SizedBox(width: 10,),
+            const SizedBox(
+              width: 10,
+            ),
             // send post
             Container(
               decoration: const BoxDecoration(

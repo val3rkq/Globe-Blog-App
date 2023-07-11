@@ -149,7 +149,7 @@ class _MyProfileSecondViewState extends State<MyProfileSecondView> {
                               ),
                               width: 70,
                               height: 70,
-                              child: user['photo'] ??
+                              child: user['photo'].isEmpty ?
                                   Center(
                                     child: Text(
                                       user['displayName']
@@ -158,7 +158,10 @@ class _MyProfileSecondViewState extends State<MyProfileSecondView> {
                                       style: const TextStyle(
                                           fontSize: 35, color: Colors.white54),
                                     ),
-                                  ),
+                                  ) : CircleAvatar(
+                                backgroundImage:
+                                Image.network(user['photo']).image,
+                              ),
                             ),
 
                             const SizedBox(

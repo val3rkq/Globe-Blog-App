@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:globe/constants.dart';
 
 class UserTile extends StatelessWidget {
   const UserTile(
-      {Key? key, required this.title, required this.subtitle, required this.onTap,})
+      {Key? key, required this.title, required this.subtitle, required this.onTap, required this.photo,})
       : super(key: key);
 
   final String title;
   final String subtitle;
+  final String photo;
   final void Function()? onTap;
 
   @override
@@ -40,11 +42,24 @@ class UserTile extends StatelessWidget {
       ),
       trailing: Container(
         decoration: BoxDecoration(
-          color: Colors.pink,
           shape: BoxShape.circle,
+          color: mainColor,
         ),
         width: 45,
         height: 45,
+        child: photo.isEmpty ?
+        Center(
+          child: Text(
+            title
+                .toString()
+                .toUpperCase()[0],
+            style: const TextStyle(
+                fontSize: 25, color: Colors.white54),
+          ),
+        ) : CircleAvatar(
+          backgroundImage:
+          Image.network(photo).image,
+        ),
       ),
     );
   }

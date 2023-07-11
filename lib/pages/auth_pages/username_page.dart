@@ -1,5 +1,8 @@
+import 'dart:io';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/services.dart';
 import 'package:globe/auth/auth.dart';
 import 'package:globe/helpers/display_message.dart';
 import 'package:globe/widgets/my_biotextfield.dart';
@@ -10,7 +13,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:globe/widgets/my_button.dart';
 import 'package:globe/widgets/my_textfield.dart';
+import 'package:image_cropper/image_cropper.dart';
 import 'package:provider/provider.dart';
+
+import 'package:image_picker/image_picker.dart';
 
 class UsernamePage extends StatefulWidget {
   const UsernamePage({
@@ -36,15 +42,19 @@ class _UsernamePageState extends State<UsernamePage> {
   // form key for validation
   final _formKey = GlobalKey<FormState>();
 
-  // // photo of profile
-  // String photoURL
+  // photo of profile
+  String photo = '';
+  File? imageFile;
+
+  // todo: photo upload to firebase
 
   // set username and bio
   void setUsernameAndBio() async {
     // get the AUTH service
     final authService = Provider.of<Auth>(context, listen: false);
     // get info is this username already registered
-    bool checkUserName = await authService.checkUsername(usernameController.text);
+    bool checkUserName =
+        await authService.checkUsername(usernameController.text);
 
     try {
       if (!checkUserName) {
@@ -53,7 +63,7 @@ class _UsernamePageState extends State<UsernamePage> {
         // validation
         if (_formKey.currentState!.validate()) {
           await authService.setUsernameAndBio(usernameController.text,
-              displayNameController.text, bioController.text, null);
+              displayNameController.text, bioController.text, photo);
         }
       }
     } catch (error) {
@@ -64,7 +74,8 @@ class _UsernamePageState extends State<UsernamePage> {
   // get user data for textfields
   void getUserData() async {
     // get data from firebase
-    var doc = await _firestore.collection('users').doc(_auth.currentUser!.uid).get();
+    var doc =
+        await _firestore.collection('users').doc(_auth.currentUser!.uid).get();
     Map<String, dynamic> data = doc.data() as Map<String, dynamic>;
 
     if (data['displayName'] != '') {
@@ -78,8 +89,37 @@ class _UsernamePageState extends State<UsernamePage> {
       });
     }
     if (data['photo'] != null) {
-      // todo: add photo
+      setState(() {
+        photo = data['photo'];
+      });
     }
+  }
+
+  // upload image
+  void uploadProfileImage() async {
+    await pickImage();
+  }
+
+  Future pickImage() async {
+    try {
+      final image = await ImagePicker().pickImage(source: ImageSource.gallery);
+
+      if (image == null) return;
+      File? img = File(image.path);
+      img = await cropImage(imageFile: img);
+      setState(() {
+        imageFile = img;
+      });
+    } on PlatformException catch (e) {
+      displayMessage(context, e.toString());
+    }
+  }
+
+  Future<File?> cropImage({required File imageFile}) async {
+    CroppedFile? croppedImage =
+        await ImageCropper().cropImage(sourcePath: imageFile.path);
+    if (croppedImage == null) return null;
+    return File(croppedImage.path);
   }
 
   @override
@@ -94,7 +134,6 @@ class _UsernamePageState extends State<UsernamePage> {
     displayNameController.dispose();
     bioController.dispose();
     _scrollController.dispose();
-
     super.dispose();
   }
 
@@ -115,7 +154,7 @@ class _UsernamePageState extends State<UsernamePage> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  SizedBox(
+                  const SizedBox(
                     height: 50,
                   ),
                   Row(
@@ -123,8 +162,8 @@ class _UsernamePageState extends State<UsernamePage> {
                     children: [
                       // some text
                       Container(
-                        width: 220,
-                        padding: EdgeInsets.all(10),
+                        width: 210,
+                        padding: const EdgeInsets.all(10),
                         child: Text(
                           S.of(context).username_text,
                           style: TextStyle(
@@ -155,13 +194,22 @@ class _UsernamePageState extends State<UsernamePage> {
                           ),
                           width: 120,
                           height: 120,
-                          child: const Center(
-                            child: Icon(
-                              CupertinoIcons.camera_fill,
-                              color: Colors.white54,
-                              size: 65,
-                            ),
-                          ),
+                          child: imageFile == null
+                              ? photo.isEmpty
+                                  ? const Center(
+                                      child: Icon(
+                                        CupertinoIcons.camera_fill,
+                                        color: Colors.white54,
+                                        size: 65,
+                                      ),
+                                    )
+                                  : CircleAvatar(
+                                      backgroundImage:
+                                          Image.network(photo).image,
+                                    )
+                              : CircleAvatar(
+                                  backgroundImage: Image.file(imageFile!).image,
+                                ),
                         ),
                       ),
                     ],
@@ -206,7 +254,8 @@ class _UsernamePageState extends State<UsernamePage> {
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        // SET USERNAME AND BIO button
+                        // 'SET' button
+                        // Username, DisplayName, Bio and Photo
                         MyButton(
                           onTap: setUsernameAndBio,
                           title: S.of(context).continue_registration,
@@ -218,10 +267,6 @@ class _UsernamePageState extends State<UsernamePage> {
                       ],
                     ),
                   ),
-
-                  // other ways to sign in
-                  // google // apple
-                  // todo
                 ],
               ),
             ),
@@ -230,6 +275,4 @@ class _UsernamePageState extends State<UsernamePage> {
       ),
     );
   }
-
-  void uploadProfileImage() {}
 }

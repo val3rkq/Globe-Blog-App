@@ -6,6 +6,7 @@ class SearchTile extends StatelessWidget {
   const SearchTile({
     Key? key,
     required this.title,
+    required this.photo,
     required this.subtitle,
     required this.onTap,
     required this.isFollower,
@@ -13,6 +14,7 @@ class SearchTile extends StatelessWidget {
   }) : super(key: key);
 
   final String title;
+  final String photo;
   final String subtitle;
   final bool isFollower;
   final bool isFollowing;
@@ -79,12 +81,22 @@ class SearchTile extends StatelessWidget {
         ),
       ),
       trailing: Container(
-        width: 30,
-        height: 30,
+        width: 45,
+        height: 45,
         decoration: BoxDecoration(
-          color: mainColor,
           shape: BoxShape.circle,
+          color: mainColor,
         ),
+        child: photo.isEmpty
+            ? Center(
+                child: Text(
+                  title.toString().toUpperCase()[0],
+                  style: const TextStyle(fontSize: 30, color: Colors.white54),
+                ),
+              )
+            : CircleAvatar(
+                backgroundImage: Image.network(photo).image,
+              ),
       ),
     );
   }

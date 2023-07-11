@@ -61,83 +61,83 @@ class _RepliesPageState extends State<RepliesPage> {
         padding: const EdgeInsets.symmetric(horizontal: 15),
         child: // header
             SingleChildScrollView(
-              child: StreamBuilder(
-                // get current post
-                stream: _firestore.collection('posts').doc(widget.id).snapshots(),
-                builder: (context, snapshot) {
-                  if (snapshot.hasError) {
-                    return Center(
-                      child: Text(S.of(context).error),
-                    );
-                  }
+          child: StreamBuilder(
+            // get current post
+            stream: _firestore.collection('posts').doc(widget.id).snapshots(),
+            builder: (context, snapshot) {
+              if (snapshot.hasError) {
+                return Center(
+                  child: Text(S.of(context).error),
+                );
+              }
 
-                  if (snapshot.connectionState == ConnectionState.waiting) {
-                    return const Center(
-                      child: CircularProgressIndicator(),
-                    );
-                  }
+              if (snapshot.connectionState == ConnectionState.waiting) {
+                return const Center(
+                  child: CircularProgressIndicator(),
+                );
+              }
 
-                  var posts = snapshot.data!.data() as Map<String, dynamic>;
-                  var post = posts['userPosts'][widget.index];
+              var posts = snapshot.data!.data() as Map<String, dynamic>;
+              var post = posts['userPosts'][widget.index];
 
-                  List<dynamic> comments = post['replies'];
+              List<dynamic> comments = post['replies'];
 
-                  return Column(
+              return Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  // post time
+                  Row(
                     crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      // post time
-                      Row(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          // time
-                          Text(
-                            getTimeFromTimeStamp(post['timestamp']),
-                            style: TextStyle(fontSize: 15, color: Colors.grey[400]),
-                          ),
-
-                          // count of comments
-                          Text(
-                            '${formatCountOfSth(comments.length)} ${S.of(context).replies}',
-                            style: TextStyle(fontSize: 15, color: Colors.grey[400]),
-                          ),
-                        ],
-                      ),
-
-                      const SizedBox(
-                        height: 10,
-                      ),
-                      // post text
+                      // time
                       Text(
-                        post['text'],
-                        style: const TextStyle(fontSize: 20, color: Colors.white),
-                        softWrap: true,
+                        getTimeFromTimeStamp(post['timestamp']),
+                        style: TextStyle(fontSize: 15, color: Colors.grey[400]),
                       ),
 
-                      const SizedBox(
-                        height: 10,
+                      // count of comments
+                      Text(
+                        '${formatCountOfSth(comments.length)} ${S.of(context).replies}',
+                        style: TextStyle(fontSize: 15, color: Colors.grey[400]),
                       ),
-                      const Divider(
-                        height: 2,
-                      ),
-                      const SizedBox(
-                        height: 10,
-                      ),
+                    ],
+                  ),
 
-                      // all replies
-                      comments.isEmpty
-                          ? Center(
-                        child: Padding(
-                          padding: const EdgeInsets.only(top: 150),
-                          child: Text(
-                            S.of(context).no_comments,
-                            style: const TextStyle(
-                              fontSize: 22,
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  // post text
+                  Text(
+                    post['text'],
+                    style: const TextStyle(fontSize: 20, color: Colors.white),
+                    softWrap: true,
+                  ),
+
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  const Divider(
+                    height: 2,
+                  ),
+                  const SizedBox(
+                    height: 10,
+                  ),
+
+                  // all replies
+                  comments.isEmpty
+                      ? Center(
+                          child: Padding(
+                            padding: const EdgeInsets.only(top: 150),
+                            child: Text(
+                              S.of(context).no_comments,
+                              style: const TextStyle(
+                                fontSize: 22,
+                              ),
                             ),
                           ),
-                        ),
-                      )
-                          : Container(
+                        )
+                      : Container(
                           padding: const EdgeInsets.only(bottom: 80),
                           child: ListView.builder(
                             reverse: true,
@@ -147,24 +147,50 @@ class _RepliesPageState extends State<RepliesPage> {
                             scrollDirection: Axis.vertical,
                             itemBuilder: (context, ind) {
                               var comment =
-                              comments[ind] as Map<String, dynamic>;
-                              return Container(
-                                margin: const EdgeInsets.only(top: 10),
-                                child: CommentItem(
-                                  id: widget.id,
-                                  displayName: comment['displayName'],
-                                  text: comment['text'],
-                                  timestamp: comment['timestamp'],
-                                ),
+                                  comments[ind] as Map<String, dynamic>;
+
+                              return StreamBuilder(
+                                stream: _firestore
+                                    .collection('users')
+                                    .doc(comment['userID'])
+                                    .snapshots(),
+                                builder: (context, snapPhoto) {
+                                  if (snapPhoto.hasError) {
+                                    return Center(
+                                      child: Text(S.of(context).error),
+                                    );
+                                  }
+
+                                  if (snapPhoto.connectionState == ConnectionState.waiting) {
+                                    return const Center(
+                                      child: CircularProgressIndicator(),
+                                    );
+                                  }
+
+                                  Map<String, dynamic> user = snapPhoto.data!
+                                      .data() as Map<String, dynamic>;
+                                  String photo = user['photo'];
+
+                                  return Container(
+                                    margin: const EdgeInsets.only(top: 10),
+                                    child: CommentItem(
+                                      id: comment['userID'],
+                                      photo: photo,
+                                      displayName: comment['displayName'],
+                                      text: comment['text'],
+                                      timestamp: comment['timestamp'],
+                                    ),
+                                  );
+                                },
                               );
                             },
                           ),
-                      ),
-                    ],
-                  );
-                },
-              ),
-            ),
+                        ),
+                ],
+              );
+            },
+          ),
+        ),
       ),
       // create new reply
       // add reply textfield and button
@@ -194,7 +220,6 @@ class _RepliesPageState extends State<RepliesPage> {
               ),
             ),
           ],
-
         ),
       ),
     );

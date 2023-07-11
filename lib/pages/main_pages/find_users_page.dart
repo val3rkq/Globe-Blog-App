@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:globe/generated/l10n.dart';
+import 'package:globe/helpers/display_message.dart';
 import 'package:globe/helpers/when_user_was_online.dart';
 import 'package:globe/pages/main_pages/profile_page.dart';
 import 'package:globe/services/user_service.dart';
@@ -52,22 +53,27 @@ class _FindUsersPageState extends State<FindUsersPage> {
     }
   }
 
-  Future<List<bool>> getDataAboutUserFollows(String id) async {
-    // get userService
-    final UserService userService = UserService();
+  Future<List<bool>?> getDataAboutUserFollows(String id) async {
+    try {
+      // get userService
+      final UserService userService = UserService();
 
-    bool isFollower = await userService.isFollower(id);
-    bool isFollowing = await userService.isFollowing(id);
-    return [isFollower, isFollowing];
+      bool isFollower = await userService.isFollower(id);
+      bool isFollowing = await userService.isFollowing(id);
+      return [isFollower, isFollowing];
+    } catch (e) {
+      displayMessage(context, e.toString());
+    }
+    return null;
   }
 
   // add user to historySearch in firebase
   // in parameters we put data of tapped user
-  // todo: add image in params and in DB
-  void addUserToHistory(id, username) async {
+  void addUserToHistory(id, username, photo) async {
     Map<String, dynamic> newData = {
       'id': id,
       'username': username,
+      'photo': photo,
     };
 
     int? indexToDelete;
@@ -152,7 +158,7 @@ class _FindUsersPageState extends State<FindUsersPage> {
         ),
         body: SingleChildScrollView(
           child: Padding(
-            padding: const EdgeInsets.all(12),
+            padding: const EdgeInsets.all(15),
             child: Column(
               children: [
                 // label
@@ -239,6 +245,7 @@ class _FindUsersPageState extends State<FindUsersPage> {
                                 }
 
                                 return HistoryTile(
+                                  photo: historySearch[index]['photo'] ?? '',
                                   title: historySearch[index]['username'],
                                   isFollower: followerFollowing.data![0],
                                   // this condition is necessary in order not to write both the
@@ -294,6 +301,7 @@ class _FindUsersPageState extends State<FindUsersPage> {
             itemBuilder: (context, index) {
               final username = searchResults[index]['username'];
               final id = searchResults[index]['uid'];
+              final photo = searchResults[index]['photo'];
               final status = searchResults[index]['status'];
               final timestamp = searchResults[index]['lastOnline'];
 
@@ -313,6 +321,7 @@ class _FindUsersPageState extends State<FindUsersPage> {
 
                   return SearchTile(
                     title: username,
+                    photo: photo,
                     subtitle: (status == 'online')
                         ? status
                         : whenUserWasOnline(timestamp),
@@ -324,7 +333,7 @@ class _FindUsersPageState extends State<FindUsersPage> {
                         : followerFollowing.data![1],
                     onTap: () {
                       // save user in history
-                      addUserToHistory(id, username);
+                      addUserToHistory(id, username, photo);
 
                       // go to profile page of this person
                       Navigator.push(

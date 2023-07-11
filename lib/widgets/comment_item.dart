@@ -1,18 +1,21 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:globe/constants.dart';
 import 'package:globe/helpers/get_time_from_timestamp.dart';
 import 'package:globe/pages/main_pages/profile_page.dart';
 
 class CommentItem extends StatelessWidget {
-  CommentItem(
+  const CommentItem(
       {super.key,
       required this.id,
       required this.text,
+      required this.photo,
       required this.timestamp,
       required this.displayName});
 
   final String id;
   final String text;
+  final String photo;
   final String displayName;
   final Timestamp timestamp;
 
@@ -47,14 +50,27 @@ class CommentItem extends StatelessWidget {
                   child: Row(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      // todo: profile image
+                      // profile image
                       Container(
-                        decoration: const BoxDecoration(
+                        decoration: BoxDecoration(
                           shape: BoxShape.circle,
-                          color: Colors.yellow,
+                          color: mainColor,
                         ),
                         width: 30,
                         height: 30,
+                        child: photo.isEmpty ?
+                        Center(
+                          child: Text(
+                            displayName
+                                .toString()
+                                .toUpperCase()[0],
+                            style: const TextStyle(
+                                fontSize: 20, color: Colors.white54),
+                          ),
+                        ) : CircleAvatar(
+                          backgroundImage:
+                          Image.network(photo).image,
+                        ),
                       ),
                       const SizedBox(
                         width: 10,

@@ -152,16 +152,21 @@ class _OtherProfileViewState extends State<OtherProfileView> {
                               ),
                               width: 70,
                               height: 70,
-                              child: user['photo'] ??
-                                  Center(
-                                    child: Text(
-                                      user['displayName']
-                                          .toString()
-                                          .toUpperCase()[0],
-                                      style: const TextStyle(
-                                          fontSize: 35, color: Colors.white54),
+                              child: user['photo'].isEmpty
+                                  ? Center(
+                                      child: Text(
+                                        user['displayName']
+                                            .toString()
+                                            .toUpperCase()[0],
+                                        style: const TextStyle(
+                                            fontSize: 35,
+                                            color: Colors.white54),
+                                      ),
+                                    )
+                                  : CircleAvatar(
+                                      backgroundImage:
+                                          Image.network(user['photo']).image,
                                     ),
-                                  ),
                             ),
 
                             const SizedBox(

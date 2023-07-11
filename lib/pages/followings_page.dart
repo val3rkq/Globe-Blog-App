@@ -91,6 +91,7 @@ class _FollowingsPageState extends State<FollowingsPage> {
 
                         return UserTile(
                           title: userDocument['username'],
+                          photo: userDocument['photo'],
                           subtitle: userDocument['status'] == 'online'
                               ? 'online'
                               : whenUserWasOnline(
