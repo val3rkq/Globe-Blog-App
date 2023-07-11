@@ -38,9 +38,9 @@ class _FollowBtnState extends State<FollowBtn> {
 
   @override
   void initState() {
+    super.initState();
     // get info is current user already followed on user with this @
     isUserFollowed();
-    super.initState();
   }
 
   @override

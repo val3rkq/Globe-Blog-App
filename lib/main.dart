@@ -5,11 +5,18 @@ import 'package:globe/firebase_options.dart';
 import 'package:globe/generated/l10n.dart';
 import 'package:provider/provider.dart';
 import 'package:globe/auth/auth.dart';
+import 'package:flutter/services.dart';
 
 import 'package:flutter_localizations/flutter_localizations.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  // this is necessary to prevent screen rotation
+  SystemChrome.setPreferredOrientations([
+    DeviceOrientation.portraitUp,
+    DeviceOrientation.portraitDown,
+  ]);
+  // init firebase
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   runApp(
     ChangeNotifierProvider(

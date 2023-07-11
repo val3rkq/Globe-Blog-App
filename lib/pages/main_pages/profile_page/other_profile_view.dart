@@ -376,11 +376,11 @@ class _OtherProfileViewState extends State<OtherProfileView> {
                               return Container(
                                 margin: const EdgeInsets.only(top: 10),
                                 child: PostItem(
+                                  // there is no more button on this page
                                   canDelete: false,
                                   post: posts[index],
                                   index: index,
                                   userID: widget.id,
-                                  onEdit: () {},
                                 ),
                               );
                             },

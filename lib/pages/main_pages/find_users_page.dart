@@ -127,9 +127,9 @@ class _FindUsersPageState extends State<FindUsersPage> {
 
   @override
   void initState() {
+    super.initState();
     currentUserId = _auth.currentUser!.uid;
     updateHistorySearch();
-    super.initState();
   }
 
   @override
@@ -247,7 +247,7 @@ class _FindUsersPageState extends State<FindUsersPage> {
                                       ? false
                                       : followerFollowing.data![1],
                                   onTap: () {
-                                    // go to chat page with this person
+                                    // go to profile page of this person
                                     Navigator.push(
                                       context,
                                       MaterialPageRoute(
@@ -326,11 +326,6 @@ class _FindUsersPageState extends State<FindUsersPage> {
                       // save user in history
                       addUserToHistory(id, username);
 
-                      // clean searchbar
-                      searchController.clear();
-                      setState(() {
-                        searchResults = [];
-                      });
                       // go to profile page of this person
                       Navigator.push(
                         context,

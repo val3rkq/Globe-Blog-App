@@ -20,14 +20,14 @@ class PostItem extends StatefulWidget {
     required this.post,
     required this.index,
     required this.userID,
-    required this.onEdit,
+    this.onMoreBtnTap,
   }) : super(key: key);
 
   final bool canDelete;
   final String userID;
   final Map<String, dynamic> post;
   final int index;
-  final Function()? onEdit;
+  final Function()? onMoreBtnTap;
 
   @override
   State<PostItem> createState() => _PostItemState();
@@ -45,8 +45,6 @@ class _PostItemState extends State<PostItem> {
   // get info about is this post liked or saved by user with widget.userID
   late bool isLiked;
   late bool isSaved;
-
-  int editNoteIndex = -1;
 
   bool isPostLikedByCurrentUser() {
     return widget.post['likes'].contains(_auth.currentUser!.uid);
@@ -98,17 +96,17 @@ class _PostItemState extends State<PostItem> {
 
   @override
   void initState() {
+    super.initState();
     isLiked = isPostLikedByCurrentUser();
     isSaved = isPostSavedByCurrentUser();
-    super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
     return Container(
       alignment: Alignment.topRight,
-      color:
-          editNoteIndex == widget.index ? Colors.white38 : Colors.transparent,
+      color: Colors.transparent,
+          // editNoteIndex == widget.index ? Colors.white38 : Colors.transparent,
       padding: const EdgeInsets.only(right: 5, left: 3.5),
       child: Slidable(
         endActionPane: ActionPane(
@@ -145,9 +143,8 @@ class _PostItemState extends State<PostItem> {
           ],
         ),
         child: Container(
-          decoration: BoxDecoration(
-            color: Colors.black54,
-            borderRadius: BorderRadius.circular(12),
+          decoration: const BoxDecoration(
+            border: Border(bottom: BorderSide(color: Colors.white12)),
           ),
           margin: const EdgeInsets.fromLTRB(5, 0, 5, 0),
           padding: const EdgeInsets.fromLTRB(17, 15, 13, 15),
@@ -174,76 +171,7 @@ class _PostItemState extends State<PostItem> {
                   widget.canDelete ? GestureDetector(
                     // show dropdown menu with these options:
                     // edit, delete, replies
-                    onTap: () {
-                      showCupertinoModalPopup(
-                          context: context,
-                          builder: (context) {
-                            return Container(
-                              height: 250,
-                              decoration: const BoxDecoration(
-                                borderRadius: BorderRadius.only(
-                                  topLeft: Radius.circular(25),
-                                  topRight: Radius.circular(25),
-                                ),
-                                color: Color(0xFF1C1B1F),
-                              ),
-                              child: Scaffold(
-                                backgroundColor: Colors.transparent,
-                                appBar: AppBar(
-                                  centerTitle: true,
-                                  title: Text(S.of(context).options),
-                                  toolbarHeight: 25,
-                                  leading: const SizedBox(),
-                                  backgroundColor: Colors.transparent,
-                                ),
-                                body: Column(
-                                  children: [
-                                    // edit post
-                                    ListTile(
-                                      onTap: () {
-                                        setState(() {
-                                          editNoteIndex = widget.index;
-                                        });
-
-                                        widget.onEdit;
-                                        Navigator.pop(context);
-                                      },
-                                      title: Text(
-                                        S.of(context).edit,
-                                        style: const TextStyle(fontSize: 18),
-                                      ),
-                                      leading: const Icon(Icons.edit_rounded),
-                                    ),
-
-                                    // replies of post
-                                    ListTile(
-                                      onTap: goToReplies,
-                                      title: Text(
-                                        S.of(context).all_replies,
-                                        style: const TextStyle(fontSize: 18),
-                                      ),
-                                      leading: const Icon(
-                                          CupertinoIcons.reply_thick_solid),
-                                    ),
-
-                                    // delete post
-                                    ListTile(
-                                      onTap: () {
-                                        Navigator.pop(context);
-                                        deletePost(widget.index);
-                                      },
-                                      title: Text(
-                                        S.of(context).delete,
-                                        style: const TextStyle(fontSize: 18),
-                                      ),
-                                      leading: const Icon(Icons.delete_rounded),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            );
-                          });
-                    },
+                    onTap: widget.onMoreBtnTap,
                     child: Icon(
                       Icons.more_horiz_rounded,
                       color: Colors.grey[400],

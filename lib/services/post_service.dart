@@ -33,7 +33,7 @@ class PostService extends ChangeNotifier {
     );
   }
 
-  // get user posts
+  // get all user posts
   Future<List<dynamic>> getPosts(String id) async {
     // get document
     var document = await _firestore.collection('posts').doc(id).get();
@@ -58,7 +58,7 @@ class PostService extends ChangeNotifier {
     List<dynamic> userPosts = await getPosts(_auth.currentUser!.uid);
 
     // update post with current index
-    userPosts[index] = text;
+    userPosts[index]['text'] = text;
 
     // update DB
     await _firestore.collection('posts').doc(_auth.currentUser!.uid).update(

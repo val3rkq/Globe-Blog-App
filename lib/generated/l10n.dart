@@ -657,6 +657,16 @@ class S {
     );
   }
 
+  /// `Post was successfully edited..`
+  String get successfully_edited {
+    return Intl.message(
+      'Post was successfully edited..',
+      name: 'successfully_edited',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `This page is under development now...`
   String get developing {
     return Intl.message(

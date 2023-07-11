@@ -69,6 +69,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "sign_in" : MessageLookupByLibrary.simpleMessage("Sign In"),
     "sign_up" : MessageLookupByLibrary.simpleMessage("Sign Up"),
     "start_the_dialog" : MessageLookupByLibrary.simpleMessage("Start the dialog ..."),
+    "successfully_edited" : MessageLookupByLibrary.simpleMessage("Post was successfully edited.."),
     "upload_img" : MessageLookupByLibrary.simpleMessage("Upload new image"),
     "user_is_not_found" : MessageLookupByLibrary.simpleMessage("User is not found.."),
     "username" : MessageLookupByLibrary.simpleMessage("Username"),

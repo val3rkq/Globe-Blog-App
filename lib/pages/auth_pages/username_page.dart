@@ -84,8 +84,8 @@ class _UsernamePageState extends State<UsernamePage> {
 
   @override
   void initState() {
-    getUserData();
     super.initState();
+    getUserData();
   }
 
   @override

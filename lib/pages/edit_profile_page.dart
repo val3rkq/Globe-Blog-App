@@ -85,8 +85,8 @@ class _EditProfilePageState extends State<EditProfilePage> {
 
   @override
   void initState() {
-    initControllers();
     super.initState();
+    initControllers();
   }
 
   @override

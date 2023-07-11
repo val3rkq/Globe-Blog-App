@@ -19,11 +19,10 @@ class CommentItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(12),
-          color: Colors.black54,
+        decoration: const BoxDecoration(
+          border: Border(bottom: BorderSide(color: Colors.white12)),
         ),
-        padding: const EdgeInsets.all(20),
+        padding: const EdgeInsets.all(10),
         alignment: Alignment.topLeft,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -39,11 +38,14 @@ class CommentItem extends StatelessWidget {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => ProfilePage(userId: id,),
+                        builder: (context) => ProfilePage(
+                          userId: id,
+                        ),
                       ),
                     );
                   },
                   child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       // todo: profile image
                       Container(
@@ -61,7 +63,7 @@ class CommentItem extends StatelessWidget {
                       Text(
                         displayName,
                         style: TextStyle(
-                          fontSize: 18,
+                          fontSize: 16,
                           fontWeight: FontWeight.bold,
                           color: Colors.grey.shade200,
                         ),
@@ -76,7 +78,8 @@ class CommentItem extends StatelessWidget {
                 Text(
                   getTimeFromTimeStamp(timestamp),
                   style: TextStyle(
-                    color: Colors.grey.shade300,
+                    color: Colors.grey.shade400,
+                    fontSize: 13
                   ),
                 ),
               ],
@@ -90,7 +93,7 @@ class CommentItem extends StatelessWidget {
             Text(
               text,
               style: const TextStyle(
-                fontSize: 18,
+                fontSize: 16,
               ),
             )
           ],

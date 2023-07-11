@@ -87,18 +87,19 @@ class _RepliesPageState extends State<RepliesPage> {
                     children: [
                       // post time
                       Row(
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           // time
                           Text(
                             getTimeFromTimeStamp(post['timestamp']),
-                            style: TextStyle(fontSize: 15, color: Colors.grey[300]),
+                            style: TextStyle(fontSize: 15, color: Colors.grey[400]),
                           ),
 
                           // count of comments
                           Text(
                             '${formatCountOfSth(comments.length)} ${S.of(context).replies}',
-                            style: TextStyle(fontSize: 15, color: Colors.grey[300]),
+                            style: TextStyle(fontSize: 15, color: Colors.grey[400]),
                           ),
                         ],
                       ),
@@ -148,7 +149,7 @@ class _RepliesPageState extends State<RepliesPage> {
                               var comment =
                               comments[ind] as Map<String, dynamic>;
                               return Container(
-                                margin: const EdgeInsets.only(top: 5),
+                                margin: const EdgeInsets.only(top: 10),
                                 child: CommentItem(
                                   id: widget.id,
                                   displayName: comment['displayName'],

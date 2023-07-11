@@ -125,276 +125,272 @@ class _MyProfileSecondViewState extends State<MyProfileSecondView> {
             ),
           ),
           body: SafeArea(
-              child: Center(
-                child: ListView(
-                  children: [
-                    Column(
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 10),
-                          child: Row(
-                            children: [
-                              // header container with userphoto
-                              Container(
-                                decoration: BoxDecoration(
-                                  gradient: LinearGradient(
-                                    colors: [
-                                      mainColor,
-                                      mainColorAccent,
-                                    ],
-                                    begin: Alignment.topCenter,
-                                    end: Alignment.bottomCenter,
-                                  ),
-                                  shape: BoxShape.circle,
+            child: Center(
+              child: ListView(
+                children: [
+                  Column(
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 10),
+                        child: Row(
+                          children: [
+                            // header container with userphoto
+                            Container(
+                              decoration: BoxDecoration(
+                                gradient: LinearGradient(
+                                  colors: [
+                                    mainColor,
+                                    mainColorAccent,
+                                  ],
+                                  begin: Alignment.topCenter,
+                                  end: Alignment.bottomCenter,
                                 ),
-                                width: 70,
-                                height: 70,
-                                child: user['photo'] ??
-                                    Center(
-                                      child: Text(
-                                        user['displayName']
-                                            .toString()
-                                            .toUpperCase()[0],
-                                        style: const TextStyle(
-                                            fontSize: 35,
-                                            color: Colors.white54),
+                                shape: BoxShape.circle,
+                              ),
+                              width: 70,
+                              height: 70,
+                              child: user['photo'] ??
+                                  Center(
+                                    child: Text(
+                                      user['displayName']
+                                          .toString()
+                                          .toUpperCase()[0],
+                                      style: const TextStyle(
+                                          fontSize: 35, color: Colors.white54),
+                                    ),
+                                  ),
+                            ),
+
+                            const SizedBox(
+                              width: 30,
+                            ),
+
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                // displayName
+                                Text(
+                                  user['displayName'],
+                                  style: TextStyle(
+                                    fontSize: 21,
+                                    color: Colors.grey.shade200,
+                                  ),
+                                ),
+
+                                // username
+                                Text(
+                                  user['username'],
+                                  style: TextStyle(
+                                    fontSize: 17,
+                                    color: Colors.grey.shade500,
+                                  ),
+                                ),
+
+                                const SizedBox(
+                                  height: 10,
+                                ),
+
+                                // bio
+                                Text(
+                                  user['bio'],
+                                  textAlign: TextAlign.center,
+                                  style: const TextStyle(
+                                    fontSize: 15,
+                                    color: Colors.grey,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+                      ),
+
+                      const SizedBox(
+                        height: 20,
+                      ),
+
+                      const Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 10),
+                        child: Divider(
+                          height: 1,
+                        ),
+                      ),
+
+                      const SizedBox(
+                        height: 10,
+                      ),
+
+                      // count of posts, followers, following
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 5),
+                        child: Row(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            // posts
+                            StreamBuilder(
+                                stream: _firestore
+                                    .collection('posts')
+                                    .doc(_auth.currentUser!.uid)
+                                    .snapshots(),
+                                builder: (context, snapshotPosts) {
+                                  if (snapshotPosts.hasError) {
+                                    return Center(
+                                      child: Text(S.of(context).error),
+                                    );
+                                  }
+
+                                  if (snapshotPosts.connectionState ==
+                                      ConnectionState.waiting) {
+                                    return const Center(
+                                      child: CircularProgressIndicator(
+                                        strokeWidth: 2,
                                       ),
-                                    ),
-                              ),
+                                    );
+                                  }
 
-                              const SizedBox(
-                                width: 30,
-                              ),
+                                  // get posts count
+                                  Map<String, dynamic> documentData =
+                                      snapshotPosts.data!.data()
+                                          as Map<String, dynamic>;
+                                  int count = documentData['userPosts'].length;
 
-                              Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  // displayName
-                                  Text(
-                                    user['displayName'],
-                                    style: TextStyle(
-                                      fontSize: 21,
-                                      color: Colors.grey.shade200,
-                                    ),
-                                  ),
+                                  return HomeHeaderItem(
+                                    count: formatCountOfSth(count),
+                                    something: S.of(context).posts,
+                                  );
+                                }),
 
-                                  // username
-                                  Text(
-                                    user['username'],
-                                    style: TextStyle(
-                                      fontSize: 17,
-                                      color: Colors.grey.shade500,
-                                    ),
-                                  ),
+                            // followers
+                            StreamBuilder(
+                                stream: _firestore
+                                    .collection('followers')
+                                    .doc(_auth.currentUser!.uid)
+                                    .snapshots(),
+                                builder: (context, snapshotFollowers) {
+                                  if (snapshotFollowers.hasError) {
+                                    return Center(
+                                      child: Text(S.of(context).error),
+                                    );
+                                  }
 
-                                  const SizedBox(
-                                    height: 10,
-                                  ),
+                                  if (snapshotFollowers.connectionState ==
+                                      ConnectionState.waiting) {
+                                    return const Center(
+                                      child: CircularProgressIndicator(
+                                        strokeWidth: 2,
+                                      ),
+                                    );
+                                  }
 
-                                  // bio
-                                  Text(
-                                    user['bio'],
-                                    textAlign: TextAlign.center,
-                                    style: const TextStyle(
-                                      fontSize: 15,
-                                      color: Colors.grey,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ],
-                          ),
-                        ),
+                                  var document = snapshotFollowers.data!.data()
+                                      as Map<String, dynamic>;
+                                  int count = document['followers'].length;
 
-                        const SizedBox(
-                          height: 20,
-                        ),
-
-                        const Padding(
-                          padding: EdgeInsets.symmetric(horizontal: 10),
-                          child: Divider(
-                            height: 1,
-                          ),
-                        ),
-
-                        const SizedBox(
-                          height: 10,
-                        ),
-
-                        // count of posts, followers, following
-                        Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 5),
-                          child: Row(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              // posts
-                              StreamBuilder(
-                                  stream: _firestore
-                                      .collection('posts')
-                                      .doc(_auth.currentUser!.uid)
-                                      .snapshots(),
-                                  builder: (context, snapshotPosts) {
-                                    if (snapshotPosts.hasError) {
-                                      return Center(
-                                        child: Text(S.of(context).error),
-                                      );
-                                    }
-
-                                    if (snapshotPosts.connectionState ==
-                                        ConnectionState.waiting) {
-                                      return const Center(
-                                        child: CircularProgressIndicator(
-                                          strokeWidth: 2,
-                                        ),
-                                      );
-                                    }
-
-                                    // get posts count
-                                    Map<String, dynamic> documentData =
-                                    snapshotPosts.data!.data()
-                                    as Map<String, dynamic>;
-                                    int count =
-                                        documentData['userPosts'].length;
-
-                                    return HomeHeaderItem(
+                                  return GestureDetector(
+                                    onTap: goToFollowersPage,
+                                    child: HomeHeaderItem(
                                       count: formatCountOfSth(count),
-                                      something: S.of(context).posts,
+                                      something: S.of(context).followers,
+                                    ),
+                                  );
+                                }),
+
+                            // followings
+                            StreamBuilder(
+                                stream: _firestore
+                                    .collection('followings')
+                                    .doc(_auth.currentUser!.uid)
+                                    .snapshots(),
+                                builder: (context, snapshotFollowings) {
+                                  if (snapshotFollowings.hasError) {
+                                    return Center(
+                                      child: Text(S.of(context).error),
                                     );
-                                  }),
+                                  }
 
-                              // followers
-                              StreamBuilder(
-                                  stream: _firestore
-                                      .collection('followers')
-                                      .doc(_auth.currentUser!.uid)
-                                      .snapshots(),
-                                  builder: (context, snapshotFollowers) {
-                                    if (snapshotFollowers.hasError) {
-                                      return Center(
-                                        child: Text(S.of(context).error),
-                                      );
-                                    }
-
-                                    if (snapshotFollowers.connectionState ==
-                                        ConnectionState.waiting) {
-                                      return const Center(
-                                        child: CircularProgressIndicator(
-                                          strokeWidth: 2,
-                                        ),
-                                      );
-                                    }
-
-                                    var document = snapshotFollowers.data!
-                                        .data() as Map<String, dynamic>;
-                                    int count = document['followers'].length;
-
-                                    return GestureDetector(
-                                      onTap: goToFollowersPage,
-                                      child: HomeHeaderItem(
-                                        count: formatCountOfSth(count),
-                                        something: S.of(context).followers,
+                                  if (snapshotFollowings.connectionState ==
+                                      ConnectionState.waiting) {
+                                    return const Center(
+                                      child: CircularProgressIndicator(
+                                        strokeWidth: 2,
                                       ),
                                     );
-                                  }),
+                                  }
 
-                              // followings
-                              StreamBuilder(
-                                  stream: _firestore
-                                      .collection('followings')
-                                      .doc(_auth.currentUser!.uid)
-                                      .snapshots(),
-                                  builder: (context, snapshotFollowings) {
-                                    if (snapshotFollowings.hasError) {
-                                      return Center(
-                                        child: Text(S.of(context).error),
-                                      );
-                                    }
+                                  var document = snapshotFollowings.data!.data()
+                                      as Map<String, dynamic>;
+                                  int count = document['followings'].length;
 
-                                    if (snapshotFollowings.connectionState ==
-                                        ConnectionState.waiting) {
-                                      return const Center(
-                                        child: CircularProgressIndicator(
-                                          strokeWidth: 2,
-                                        ),
-                                      );
-                                    }
-
-                                    var document = snapshotFollowings.data!
-                                        .data() as Map<String, dynamic>;
-                                    int count = document['followings'].length;
-
-                                    return GestureDetector(
-                                      onTap: goToFollowingsPage,
-                                      child: HomeHeaderItem(
-                                        count: formatCountOfSth(count),
-                                        something: S.of(context).followings,
-                                      ),
-                                    );
-                                  }),
-                            ],
-                          ),
+                                  return GestureDetector(
+                                    onTap: goToFollowingsPage,
+                                    child: HomeHeaderItem(
+                                      count: formatCountOfSth(count),
+                                      something: S.of(context).followings,
+                                    ),
+                                  );
+                                }),
+                          ],
                         ),
+                      ),
+                    ],
+                  ),
+                  SingleChildScrollView(
+                    child: StreamBuilder(
+                      stream: _firestore
+                          .collection('posts')
+                          .doc(_auth.currentUser!.uid)
+                          .snapshots(),
+                      builder: (context, snapshot2) {
+                        if (snapshot2.hasError) {
+                          return Text(
+                              '${S.of(context).error} ${snapshot2.error}');
+                        }
 
-                      ],
-                    ),
+                        if (snapshot2.connectionState ==
+                            ConnectionState.waiting) {
+                          return Text(
+                            S.of(context).loading,
+                            style: const TextStyle(
+                              fontSize: 17,
+                              fontWeight: FontWeight.w400,
+                            ),
+                          );
+                        }
 
-                    SingleChildScrollView(
-                      child: StreamBuilder(
-                        stream: _firestore
-                            .collection('posts')
-                            .doc(_auth.currentUser!.uid)
-                            .snapshots(),
-                        builder: (context, snapshot2) {
-                          if (snapshot2.hasError) {
-                            return Text(
-                                '${S.of(context).error} ${snapshot2.error}');
-                          }
+                        Map<String, dynamic> doc =
+                            snapshot2.data!.data() as Map<String, dynamic>;
+                        List<dynamic> posts = doc['userPosts'] as List<dynamic>;
 
-                          if (snapshot2.connectionState ==
-                              ConnectionState.waiting) {
-                            return Text(
-                              S.of(context).loading,
-                              style: const TextStyle(
-                                fontSize: 17,
-                                fontWeight: FontWeight.w400,
+                        return ListView.builder(
+                          reverse: true,
+                          shrinkWrap: true,
+                          scrollDirection: Axis.vertical,
+                          physics: const NeverScrollableScrollPhysics(),
+                          itemCount: posts.length,
+                          itemBuilder: (context, index) {
+                            return Padding(
+                              padding: const EdgeInsets.only(top: 10),
+                              child: PostItem(
+                                // there is no more button on this page
+                                canDelete: false,
+                                post: posts[index],
+                                index: index,
+                                userID: _auth.currentUser!.uid,
                               ),
                             );
-                          }
-
-                          Map<String, dynamic> doc =
-                              snapshot2.data!.data() as Map<String, dynamic>;
-                          List<dynamic> posts =
-                              doc['userPosts'] as List<dynamic>;
-
-                          return ListView.builder(
-                            reverse: true,
-                            shrinkWrap: true,
-                            scrollDirection: Axis.vertical,
-                            physics: const NeverScrollableScrollPhysics(),
-                            itemCount: posts.length,
-                            itemBuilder: (context, index) {
-                              return Padding(
-                                padding: const EdgeInsets.only(top: 10),
-                                child: PostItem(
-                                  canDelete: false,
-                                  post: posts[index],
-                                  index: index,
-                                  userID: _auth.currentUser!.uid,
-                                  onEdit: () {},
-                                ),
-                              );
-                            },
-                          );
-                        },
-                      ),
+                          },
+                        );
+                      },
                     ),
-
-                    SizedBox(height: 10,),
-                  ],
-                ),
+                  ),
+                  SizedBox(
+                    height: 10,
+                  ),
+                ],
               ),
             ),
+          ),
         );
       },
     );

@@ -24,12 +24,12 @@ class _MyBioTextFieldState extends State<MyBioTextField> {
 
   @override
   void initState() {
+    super.initState();
     // set _bioLength
     setState(() {
       _bioLength = widget.length;
     });
 
-    super.initState();
   }
 
   @override
