@@ -1,5 +1,7 @@
+import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:globe/generated/l10n.dart';
@@ -10,6 +12,7 @@ class Auth extends ChangeNotifier {
   // instances of AUTH and FIRESTORE
   final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
   final FirebaseFirestore _firebaseFirestore = FirebaseFirestore.instance;
+  final FirebaseStorage _storage = FirebaseStorage.instance;
 
   // sign in
   Future<UserCredential> signInWithEmailAndPassword(
@@ -179,8 +182,9 @@ class Auth extends ChangeNotifier {
     }
   }
 
+  // set / update user data
   Future<void> setUsernameAndBio(
-      String username, String displayName, String bio, String? photo) async {
+      String username, String displayName, String bio) async {
     try {
       // create new doc for new user in firebase
       await _firebaseFirestore
@@ -190,7 +194,6 @@ class Auth extends ChangeNotifier {
         'username': username.toLowerCase().trim().replaceAll(' ', '_'),
         'displayName': displayName,
         'bio': bio,
-        'photo': photo ?? '',
         'status': 'online'
       });
     } on FirebaseAuthException catch (error) {
@@ -198,13 +201,29 @@ class Auth extends ChangeNotifier {
     }
   }
 
-  Future<void> setPhoto(String photo) async {
+  // upload image to firebase storage
+  Future<String> uploadImageToStorage(File image) async {
+    //Create a reference to the location you want to upload to in firebase
+    Reference reference = _storage.ref().child("profileImage/${_firebaseAuth.currentUser!.uid}");
+
+    // Upload the image file to Firebase Storage
+    await reference.putFile(image);
+
+    // Get the download url
+    String photoURL = await reference.getDownloadURL();
+    return photoURL;
+  }
+
+  // set / update user photo
+  Future<void> setPhoto(File photo) async {
     try {
+      String imageURL = await uploadImageToStorage(photo);
+
       await _firebaseFirestore
           .collection('users')
           .doc(_firebaseAuth.currentUser!.uid)
           .update({
-        'photo': photo,
+        'photo': imageURL,
       });
     } on FirebaseAuthException catch (error) {
       throw (error.code);
@@ -239,7 +258,6 @@ class Auth extends ChangeNotifier {
       Navigator.pop(context);
     } catch (e) {
       displayMessage(context, e.toString());
-      print(e);
     }
   }
 }

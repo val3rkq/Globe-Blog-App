@@ -46,22 +46,24 @@ class _UsernamePageState extends State<UsernamePage> {
 
   // todo: photo upload to firebase
 
-  // set username and bio
-  void setUsernameAndBio() async {
+  // set username data
+  void setUsernameData() async {
     // get the AUTH service
     final authService = Provider.of<Auth>(context, listen: false);
-    // get info is this username already registered
-    bool checkUserName =
-        await authService.checkUsername(usernameController.text);
+
+    // validation
 
     try {
-      if (!checkUserName) {
-        displayMessage(context, S.of(context).validation_username_is_taken);
-      } else {
-        // validation
-        if (_formKey.currentState!.validate()) {
+      if (_formKey.currentState!.validate()) {
+        // get info is this username already registered
+        bool checkUserName =
+            await authService.checkUsername(usernameController.text);
+
+        if (!checkUserName) {
+          displayMessage(context, S.of(context).validation_username_is_taken);
+        } else {
           await authService.setUsernameAndBio(usernameController.text,
-              displayNameController.text, bioController.text, photo);
+              displayNameController.text, bioController.text);
         }
       }
     } catch (error) {
@@ -97,9 +99,12 @@ class _UsernamePageState extends State<UsernamePage> {
   void uploadProfileImage() async {
     await pickImage();
 
-    // update DB
+    if (imageFile != null) {
+      // get the AUTH service
+      final authService = Provider.of<Auth>(context, listen: false);
 
-
+      await authService.setPhoto(imageFile!);
+    }
   }
 
   Future<void> pickImage() async {
@@ -256,10 +261,10 @@ class _UsernamePageState extends State<UsernamePage> {
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        // 'SET' button
+                        // 'SET DATA' button
                         // Username, DisplayName, Bio and Photo
                         MyButton(
-                          onTap: setUsernameAndBio,
+                          onTap: setUsernameData,
                           title: S.of(context).continue_registration,
                         ),
 

@@ -42,7 +42,12 @@ class _MyProfileViewState extends State<MyProfileView> {
   void uploadProfileImage() async {
     await pickImage();
 
-    // update DB
+    if (imageFile != null) {
+      // get the AUTH service
+      final authService = Provider.of<Auth>(context, listen: false);
+
+      authService.setPhoto(imageFile!);
+    }
 
   }
 

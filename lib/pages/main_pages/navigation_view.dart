@@ -1,3 +1,5 @@
+import 'package:globe/constants.dart';
+
 import 'find_users_page.dart';
 import 'home_page.dart';
 import 'profile_page.dart';
@@ -53,9 +55,9 @@ class _NavigationViewState extends State<NavigationView> {
           showSelectedLabels: false,
           showUnselectedLabels: false,
           unselectedItemColor: CupertinoColors.systemGrey,
-          selectedItemColor: Colors.pink,
-          iconSize: 23,
-          selectedIconTheme: const IconThemeData(size: 28),
+          selectedItemColor: mainColor,
+          iconSize: 25,
+          selectedIconTheme: const IconThemeData(size: 31),
           elevation: 0,
           backgroundColor: Colors.transparent,
           enableFeedback: false,

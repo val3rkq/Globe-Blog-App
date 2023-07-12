@@ -1,9 +1,8 @@
-// import 'package:globe/navigation_view.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:globe/generated/l10n.dart';
-import 'package:globe/navigation_view.dart';
+import 'package:globe/pages/main_pages/navigation_view.dart';
 
 import '../pages/auth_pages/username_page.dart';
 
