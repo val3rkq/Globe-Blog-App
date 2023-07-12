@@ -198,6 +198,19 @@ class Auth extends ChangeNotifier {
     }
   }
 
+  Future<void> setPhoto(String photo) async {
+    try {
+      await _firebaseFirestore
+          .collection('users')
+          .doc(_firebaseAuth.currentUser!.uid)
+          .update({
+        'photo': photo,
+      });
+    } on FirebaseAuthException catch (error) {
+      throw (error.code);
+    }
+  }
+
   // sign out
   Future<void> signOut() async {
     try {

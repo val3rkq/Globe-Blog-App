@@ -43,6 +43,7 @@ class _MyProfileViewState extends State<MyProfileView> {
     await pickImage();
 
     // update DB
+
   }
 
   Future<void> pickImage() async {
@@ -97,13 +98,7 @@ class _MyProfileViewState extends State<MyProfileView> {
     try {
       await authService.signOut();
     } catch (error) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text(
-            error.toString(),
-          ),
-        ),
-      );
+      displayMessage(context, error.toString()); 
     }
   }
 

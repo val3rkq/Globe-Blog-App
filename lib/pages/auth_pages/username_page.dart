@@ -5,14 +5,12 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/services.dart';
 import 'package:globe/auth/auth.dart';
 import 'package:globe/helpers/display_message.dart';
-import 'package:globe/widgets/my_biotextfield.dart';
 import 'package:globe/constants.dart';
 import 'package:globe/generated/l10n.dart';
 import 'package:globe/helpers/scroll_to_bottom.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:globe/widgets/my_button.dart';
-import 'package:globe/widgets/my_textfield.dart';
+import 'package:globe/widgets/page_names/for_username_page.dart';
 import 'package:image_cropper/image_cropper.dart';
 import 'package:provider/provider.dart';
 
@@ -98,9 +96,13 @@ class _UsernamePageState extends State<UsernamePage> {
   // upload image
   void uploadProfileImage() async {
     await pickImage();
+
+    // update DB
+
+
   }
 
-  Future pickImage() async {
+  Future<void> pickImage() async {
     try {
       final image = await ImagePicker().pickImage(source: ImageSource.gallery);
 

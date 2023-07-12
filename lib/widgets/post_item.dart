@@ -4,14 +4,12 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
-import 'package:globe/generated/l10n.dart';
 import 'package:globe/helpers/display_message.dart';
 import 'package:globe/helpers/format_count_of_sth.dart';
 import 'package:globe/helpers/get_time_from_timestamp.dart';
 import 'package:globe/pages/replies_page.dart';
 import 'package:globe/services/post_service.dart';
-import 'package:globe/widgets/like_button.dart';
-import 'package:globe/widgets/save_button.dart';
+import 'package:globe/widgets/page_names/for_post_item.dart';
 
 class PostItem extends StatefulWidget {
   const PostItem({

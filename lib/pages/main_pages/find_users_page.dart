@@ -6,9 +6,7 @@ import 'package:globe/helpers/display_message.dart';
 import 'package:globe/helpers/when_user_was_online.dart';
 import 'package:globe/pages/main_pages/profile_page.dart';
 import 'package:globe/services/user_service.dart';
-import 'package:globe/widgets/history_tile.dart';
-import 'package:globe/widgets/search_tile.dart';
-import 'package:globe/widgets/user_not_found.dart';
+import 'package:globe/widgets/page_names/for_find_users_page.dart';
 
 class FindUsersPage extends StatefulWidget {
   const FindUsersPage({Key? key}) : super(key: key);

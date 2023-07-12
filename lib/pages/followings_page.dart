@@ -3,8 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:globe/generated/l10n.dart';
 import 'package:globe/helpers/when_user_was_online.dart';
 import 'package:globe/pages/main_pages/profile_page.dart';
-import 'package:globe/widgets/no_users.dart';
-import 'package:globe/widgets/user_tile.dart';
+import 'package:globe/widgets/page_names/for_follow_pages.dart';
 
 class FollowingsPage extends StatefulWidget {
   const FollowingsPage({super.key, required this.id});

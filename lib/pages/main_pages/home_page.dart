@@ -7,12 +7,10 @@ import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:globe/constants.dart';
 import 'package:globe/generated/l10n.dart';
 import 'package:globe/helpers/display_message.dart';
-import 'package:globe/helpers/scroll_to_bottom.dart';
 import 'package:globe/pages/replies_page.dart';
 import 'package:globe/services/post_service.dart';
-import 'package:globe/widgets/my_posttextfield.dart';
-import 'package:globe/widgets/post_item.dart';
 import 'package:lottie/lottie.dart';
+import 'package:globe/widgets/page_names/for_home_page.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);

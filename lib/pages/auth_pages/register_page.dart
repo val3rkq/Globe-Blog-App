@@ -1,15 +1,10 @@
+import 'package:flutter/material.dart';
 import 'package:globe/auth/auth.dart';
-import 'package:globe/helpers/display_message.dart';
-import 'package:globe/widgets/my_button.dart';
-import 'package:globe/widgets/my_password_textfield.dart';
-import 'package:globe/widgets/my_textfield.dart';
 import 'package:globe/constants.dart';
 import 'package:globe/generated/l10n.dart';
-import 'package:globe/navigation_view.dart';
-import 'package:globe/pages/auth_pages/username_page.dart';
+import 'package:globe/helpers/display_message.dart';
 import 'package:globe/helpers/scroll_to_bottom.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/material.dart';
+import 'package:globe/widgets/page_names/for_auth_pages.dart';
 import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
 

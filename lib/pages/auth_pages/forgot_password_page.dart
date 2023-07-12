@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:globe/auth/auth.dart';
 import 'package:globe/generated/l10n.dart';
-import 'package:globe/helpers/display_message.dart';
-import 'package:globe/widgets/my_button.dart';
-import 'package:globe/widgets/my_textfield.dart';
 import 'package:provider/provider.dart';
+import 'package:globe/widgets/page_names/for_forgot_password_page.dart';
 
 class ForgotPasswordPage extends StatefulWidget {
   const ForgotPasswordPage({super.key});

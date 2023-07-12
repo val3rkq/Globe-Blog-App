@@ -4,14 +4,11 @@ import 'package:globe/pages/auth_pages/forgot_password_page.dart';
 import 'package:globe/widgets/icon_tile.dart';
 import 'package:globe/constants.dart';
 import 'package:globe/generated/l10n.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
-import 'package:globe/widgets/my_button.dart';
-import 'package:globe/widgets/my_password_textfield.dart';
-import 'package:globe/widgets/my_textfield.dart';
 import 'package:globe/helpers/scroll_to_bottom.dart';
 import 'package:provider/provider.dart';
+import 'package:globe/widgets/page_names/for_auth_pages.dart';
 
 class LoginPage extends StatefulWidget {
   final Function()? onTap;
@@ -27,7 +24,7 @@ class _LoginPageState extends State<LoginPage> {
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
 
-  ScrollController _scrollController = ScrollController();
+  final ScrollController _scrollController = ScrollController();
 
   // form key for validation
   final _formKey = GlobalKey<FormState>();

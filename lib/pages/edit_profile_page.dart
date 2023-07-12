@@ -1,14 +1,13 @@
 import 'package:globe/auth/auth.dart';
 import 'package:globe/helpers/display_message.dart';
-import 'package:globe/widgets/my_biotextfield.dart';
-import 'package:globe/widgets/my_textfield.dart';
 import 'package:globe/generated/l10n.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:globe/widgets/page_names/for_edit_profile_page.dart';
+import 'package:globe/helpers/scroll_to_bottom.dart';
 
-import '../helpers/scroll_to_bottom.dart';
 
 class EditProfilePage extends StatefulWidget {
   const EditProfilePage({Key? key}) : super(key: key);

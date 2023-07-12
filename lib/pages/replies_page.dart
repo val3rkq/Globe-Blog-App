@@ -5,8 +5,7 @@ import 'package:globe/helpers/display_message.dart';
 import 'package:globe/helpers/format_count_of_sth.dart';
 import 'package:globe/helpers/get_time_from_timestamp.dart';
 import 'package:globe/services/comment_service.dart';
-import 'package:globe/widgets/comment_item.dart';
-import 'package:globe/widgets/my_posttextfield.dart';
+import 'package:globe/widgets/page_names/for_replies_page.dart';
 
 class RepliesPage extends StatefulWidget {
   const RepliesPage({

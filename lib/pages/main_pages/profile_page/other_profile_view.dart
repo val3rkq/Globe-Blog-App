@@ -1,19 +1,13 @@
-import 'package:firebase_auth/firebase_auth.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:globe/constants.dart';
 import 'package:globe/generated/l10n.dart';
 import 'package:globe/helpers/format_count_of_sth.dart';
 import 'package:globe/helpers/when_user_was_online.dart';
 import 'package:globe/pages/followers_page.dart';
 import 'package:globe/pages/followings_page.dart';
-import 'package:globe/services/post_service.dart';
-import 'package:globe/services/user_service.dart';
-import 'package:globe/widgets/follow_button.dart';
-import 'package:globe/widgets/home_header_item.dart';
-
-import '../../../widgets/post_item.dart';
+import 'package:globe/widgets/page_names/for_other_profile_view.dart';
 
 class OtherProfileView extends StatefulWidget {
   const OtherProfileView({super.key, required this.id});
@@ -27,11 +21,6 @@ class OtherProfileView extends StatefulWidget {
 class _OtherProfileViewState extends State<OtherProfileView> {
   // instances of firestore and AUTH
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
-  final FirebaseAuth _auth = FirebaseAuth.instance;
-
-  // get post and user services
-  final PostService _postService = PostService();
-  final UserService _userService = UserService();
 
   bool isFollowed = false;
 
