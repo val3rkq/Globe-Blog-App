@@ -1,3 +1,4 @@
+import 'package:globe/constants.dart';
 import 'package:globe/generated/l10n.dart';
 import 'package:flutter/material.dart';
 
@@ -52,25 +53,25 @@ class MyTextField extends StatelessWidget {
       decoration: InputDecoration(
         hintText: hintText,
         hintStyle: TextStyle(
-          color: Colors.grey[500],
+          color: grey,
         ),
         enabledBorder: OutlineInputBorder(
-          borderSide: const BorderSide(color: Colors.white12),
+          borderSide: BorderSide(color: whiteX),
           borderRadius: BorderRadius.circular(14),
         ),
         focusedBorder: OutlineInputBorder(
-          borderSide: const BorderSide(color: Colors.white12),
+          borderSide: BorderSide(color: whiteX),
           borderRadius: BorderRadius.circular(14),
         ),
         errorBorder: OutlineInputBorder(
-          borderSide: const BorderSide(color: Colors.white12),
+          borderSide: BorderSide(color: whiteX),
           borderRadius: BorderRadius.circular(14),
         ),
         focusedErrorBorder: OutlineInputBorder(
-          borderSide: const BorderSide(color: Colors.white12),
+          borderSide: BorderSide(color: whiteX),
           borderRadius: BorderRadius.circular(14),
         ),
-        fillColor: Colors.white10,
+        fillColor: white1,
         filled: true,
       ),
     );

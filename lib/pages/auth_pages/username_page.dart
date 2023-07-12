@@ -44,15 +44,12 @@ class _UsernamePageState extends State<UsernamePage> {
   String photo = '';
   File? imageFile;
 
-  // todo: photo upload to firebase
-
   // set username data
   void setUsernameData() async {
     // get the AUTH service
     final authService = Provider.of<Auth>(context, listen: false);
 
     // validation
-
     try {
       if (_formKey.currentState!.validate()) {
         // get info is this username already registered
@@ -97,16 +94,19 @@ class _UsernamePageState extends State<UsernamePage> {
 
   // upload image
   void uploadProfileImage() async {
+    // get img
     await pickImage();
 
     if (imageFile != null) {
       // get the AUTH service
       final authService = Provider.of<Auth>(context, listen: false);
 
+      // update DB
       await authService.setPhoto(imageFile!);
     }
   }
 
+  // pick the img
   Future<void> pickImage() async {
     try {
       final image = await ImagePicker().pickImage(source: ImageSource.gallery);
@@ -122,6 +122,7 @@ class _UsernamePageState extends State<UsernamePage> {
     }
   }
 
+  // crop the img
   Future<File?> cropImage({required File imageFile}) async {
     CroppedFile? croppedImage =
         await ImageCropper().cropImage(sourcePath: imageFile.path);
@@ -174,7 +175,7 @@ class _UsernamePageState extends State<UsernamePage> {
                         child: Text(
                           S.of(context).username_text,
                           style: TextStyle(
-                            color: Colors.grey[600],
+                            color: grey6,
                             fontSize: 15,
                           ),
                         ),
@@ -203,10 +204,10 @@ class _UsernamePageState extends State<UsernamePage> {
                           height: 120,
                           child: imageFile == null
                               ? photo.isEmpty
-                                  ? const Center(
+                                  ? Center(
                                       child: Icon(
                                         CupertinoIcons.camera_fill,
-                                        color: Colors.white54,
+                                        color: white5,
                                         size: 65,
                                       ),
                                     )

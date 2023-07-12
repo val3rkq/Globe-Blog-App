@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:globe/constants.dart';
 import 'package:globe/services/user_service.dart';
 
 class FollowBtn extends StatefulWidget {
@@ -60,15 +61,15 @@ class _FollowBtnState extends State<FollowBtn> {
         }
       },
       icon: isFollowed
-          ? const Icon(
+          ? Icon(
               CupertinoIcons.minus_circle,
               size: 27,
-              color: Colors.redAccent,
+              color: red,
             )
-          : const Icon(
+          : Icon(
               CupertinoIcons.add_circled,
               size: 27,
-              color: Colors.green,
+              color: green,
             ),
     );
   }

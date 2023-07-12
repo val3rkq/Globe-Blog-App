@@ -29,8 +29,8 @@ class _NavigationViewState extends State<NavigationView> {
       ),
       bottomNavigationBar: Theme(
         data: ThemeData(
-          splashColor: Colors.transparent,
-          highlightColor: Colors.transparent,
+          splashColor: transparent,
+          highlightColor: transparent,
           brightness: Brightness.dark,
         ),
         child: BottomNavigationBar(
@@ -54,12 +54,12 @@ class _NavigationViewState extends State<NavigationView> {
           currentIndex: _selectedIndex,
           showSelectedLabels: false,
           showUnselectedLabels: false,
-          unselectedItemColor: CupertinoColors.systemGrey,
+          unselectedItemColor: grey,
           selectedItemColor: mainColor,
           iconSize: 25,
           selectedIconTheme: const IconThemeData(size: 31),
           elevation: 0,
-          backgroundColor: Colors.transparent,
+          backgroundColor: transparent,
           enableFeedback: false,
           onTap: (index) {
             setState(() {

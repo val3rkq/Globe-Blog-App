@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:globe/constants.dart';
 import 'package:globe/generated/l10n.dart';
 
 class HistoryTile extends StatelessWidget {
@@ -34,16 +35,16 @@ class HistoryTile extends StatelessWidget {
             Container(
               width: 40,
               height: 40,
-              decoration: const BoxDecoration(
+              decoration: BoxDecoration(
                 shape: BoxShape.circle,
-                color: Colors.pink
+                color: mainColor
               ),
               child: photo.isEmpty
                   ? Center(
                       child: Text(
                         title.toString().toUpperCase()[0],
-                        style: const TextStyle(
-                            fontSize: 20, color: Colors.white54),
+                        style: TextStyle(
+                            fontSize: 20, color: white5),
                       ),
                     )
                   : CircleAvatar(
@@ -64,7 +65,7 @@ class HistoryTile extends StatelessWidget {
                         S.of(context).follower,
                         style: TextStyle(
                           fontSize: 15,
-                          color: Colors.grey.withOpacity(0.65),
+                          color: grey.withOpacity(0.65),
                         ),
                       )
                     : const SizedBox(),
@@ -73,7 +74,7 @@ class HistoryTile extends StatelessWidget {
                         S.of(context).following,
                         style: TextStyle(
                           fontSize: 15,
-                          color: Colors.grey.withOpacity(0.65),
+                          color: grey.withOpacity(0.65),
                         ),
                       )
                     : const SizedBox(),

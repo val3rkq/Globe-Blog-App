@@ -98,7 +98,7 @@ class _RegisterPageState extends State<RegisterPage> {
                     child: Text(
                       S.of(context).register_text,
                       style: TextStyle(
-                        color: Colors.grey[600],
+                        color: grey6,
                         fontSize: 17,
                       ),
                     ),
@@ -165,7 +165,7 @@ class _RegisterPageState extends State<RegisterPage> {
                             Text(
                               S.of(context).already_member,
                               style: TextStyle(
-                                color: Colors.grey[600],
+                                color: grey6,
                               ),
                             ),
                             const SizedBox(

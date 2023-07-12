@@ -8,7 +8,6 @@ import 'package:provider/provider.dart';
 import 'package:globe/widgets/page_names/for_edit_profile_page.dart';
 import 'package:globe/helpers/scroll_to_bottom.dart';
 
-
 class EditProfilePage extends StatefulWidget {
   const EditProfilePage({Key? key}) : super(key: key);
 
@@ -28,7 +27,6 @@ class _EditProfilePageState extends State<EditProfilePage> {
   TextEditingController emailController = TextEditingController();
 
   final ScrollController _scrollController = ScrollController();
-
 
   // form key for validation
   final _formKey = GlobalKey<FormState>();
@@ -52,25 +50,28 @@ class _EditProfilePageState extends State<EditProfilePage> {
         await _firestore.collection('users').doc(_auth.currentUser!.uid).get();
     var user = snapshot.data() as Map<String, dynamic>;
 
-
     // get the AUTH service
     final authService = Provider.of<Auth>(context, listen: false);
 
-    // get info is this username already registered
-    bool checkUserName = await authService.checkUsername(usernameController.text);
-
+    // validation
     try {
-      if (!checkUserName) {
-        displayMessage(context, S.of(context).validation_username_is_taken);
-      } else {
-        // validation
-        if (_formKey.currentState!.validate()) {
+      if (_formKey.currentState!.validate()) {
+        // get info is this username already registered
+        bool checkUserName =
+            await authService.checkUsername(usernameController.text);
+
+        if (!checkUserName) {
+          displayMessage(context, S.of(context).validation_username_is_taken);
+        } else {
           user['username'] = usernameController.text;
           user['displayName'] = displayNameController.text;
           user['bio'] = bioController.text;
           user['email'] = emailController.text;
 
-          await _firestore.collection('users').doc(_auth.currentUser!.uid).set(user);
+          await _firestore
+              .collection('users')
+              .doc(_auth.currentUser!.uid)
+              .set(user);
 
           // change email in AUTH-DATA
           await _auth.currentUser!.updateEmail(user['email']);
@@ -124,7 +125,6 @@ class _EditProfilePageState extends State<EditProfilePage> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-
                 // username
                 MyTextField(
                   controller: usernameController,

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:globe/constants.dart';
 
 class MyButton extends StatelessWidget {
   const MyButton({
@@ -21,11 +22,11 @@ class MyButton extends StatelessWidget {
           child: Text(
             title,
             style: TextStyle(
-                color: Colors.white, fontSize: 16, fontWeight: FontWeight.bold),
+                color: white, fontSize: 16, fontWeight: FontWeight.bold),
           ),
         ),
         decoration: BoxDecoration(
-          color: Colors.black,
+          color: black,
           borderRadius: BorderRadius.circular(14),
         ),
       ),

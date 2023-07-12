@@ -103,7 +103,7 @@ class _LoginPageState extends State<LoginPage> {
                         child: Text(
                           S.of(context).login_text,
                           style: TextStyle(
-                            color: Colors.grey[600],
+                            color: grey6,
                             fontSize: 17,
                           ),
                         ),
@@ -150,7 +150,7 @@ class _LoginPageState extends State<LoginPage> {
                           },
                           child: Text(
                             S.of(context).forgot_password,
-                            style: TextStyle(color: Colors.grey[600]),
+                            style: TextStyle(color: grey6),
                           ),
                         ),
                       ),
@@ -179,7 +179,7 @@ class _LoginPageState extends State<LoginPage> {
                               Expanded(
                                 child: Divider(
                                   thickness: 0.5,
-                                  color: Colors.grey[400],
+                                  color: grey4,
                                 ),
                               ),
                               Padding(
@@ -187,13 +187,13 @@ class _LoginPageState extends State<LoginPage> {
                                     horizontal: 10.0),
                                 child: Text(
                                   S.of(context).continue_with,
-                                  style: TextStyle(color: Colors.grey[700]),
+                                  style: TextStyle(color: grey7),
                                 ),
                               ),
                               Expanded(
                                 child: Divider(
                                   thickness: 0.5,
-                                  color: Colors.grey[400],
+                                  color: grey4,
                                 ),
                               ),
                             ],
@@ -233,7 +233,7 @@ class _LoginPageState extends State<LoginPage> {
                       Text(
                         S.of(context).not_a_member,
                         style: TextStyle(
-                          color: Colors.grey[600],
+                          color: grey6,
                         ),
                       ),
                       const SizedBox(

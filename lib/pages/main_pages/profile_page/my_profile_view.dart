@@ -40,17 +40,19 @@ class _MyProfileViewState extends State<MyProfileView> {
 
   // upload image
   void uploadProfileImage() async {
+    // get img
     await pickImage();
 
     if (imageFile != null) {
       // get the AUTH service
       final authService = Provider.of<Auth>(context, listen: false);
 
+      // update DB
       authService.setPhoto(imageFile!);
     }
-
   }
 
+  // pick the img
   Future<void> pickImage() async {
     try {
       final image = await ImagePicker().pickImage(source: ImageSource.gallery);
@@ -68,6 +70,7 @@ class _MyProfileViewState extends State<MyProfileView> {
     }
   }
 
+  // crop the img
   Future<File?> cropImage({required File imageFile}) async {
     CroppedFile? croppedImage =
         await ImageCropper().cropImage(sourcePath: imageFile.path);
@@ -149,8 +152,8 @@ class _MyProfileViewState extends State<MyProfileView> {
                       margin: const EdgeInsets.only(top: 1.5),
                       decoration: BoxDecoration(
                         color: user['status'] == 'online'
-                            ? Colors.lightGreenAccent
-                            : Colors.grey[500],
+                            ? onlineColor
+                            : grey,
                         shape: BoxShape.circle,
                       ),
                     ),
@@ -168,8 +171,8 @@ class _MyProfileViewState extends State<MyProfileView> {
               titleTextStyle: TextStyle(
                 fontSize: 18,
                 color: user['status'] == 'online'
-                    ? Colors.lightGreenAccent
-                    : Colors.grey[500],
+                    ? onlineColor
+                    : grey,
               ),
               leading: IconButton(
                 icon: const Icon(Icons.settings_rounded),
@@ -223,10 +226,10 @@ class _MyProfileViewState extends State<MyProfileView> {
                           width: 150,
                           height: 150,
                           child: user['photo'].isEmpty
-                              ? const Center(
+                              ? Center(
                                   child: Icon(
                                     CupertinoIcons.camera_fill,
-                                    color: Colors.white54,
+                                    color: white5,
                                     size: 80,
                                   ),
                                 )
@@ -246,7 +249,7 @@ class _MyProfileViewState extends State<MyProfileView> {
                         user['displayName'],
                         style: TextStyle(
                           fontSize: 21,
-                          color: Colors.grey.shade200,
+                          color: grey3,
                         ),
                       ),
 
@@ -255,7 +258,7 @@ class _MyProfileViewState extends State<MyProfileView> {
                         user['username'],
                         style: TextStyle(
                           fontSize: 17,
-                          color: Colors.grey.shade500,
+                          color: grey,
                         ),
                       ),
 
@@ -269,9 +272,9 @@ class _MyProfileViewState extends State<MyProfileView> {
                         child: Text(
                           user['bio'],
                           textAlign: TextAlign.center,
-                          style: const TextStyle(
+                          style: TextStyle(
                             fontSize: 15,
-                            color: Colors.grey,
+                            color: grey,
                           ),
                         ),
                       ),

@@ -9,11 +9,11 @@ class IconTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.all(20),
+      padding: const EdgeInsets.all(20),
       decoration: BoxDecoration(
         color: backColor,
         borderRadius: BorderRadius.circular(15),
-        border: Border.all(color: Colors.white12)
+        border: Border.all(color: whiteX)
       ),
       child: Image.asset(asset, height: 35),
     );

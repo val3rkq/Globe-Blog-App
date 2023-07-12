@@ -175,9 +175,9 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
                         children: [
                           Text(
                             S.of(context).welcome,
-                            style: const TextStyle(
+                            style: TextStyle(
                               fontSize: 17,
-                              color: Colors.grey,
+                              color: grey,
                             ),
                           ),
                           FittedBox(
@@ -186,8 +186,8 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
                               width: MediaQuery.of(context).size.width * 0.6,
                               child: Text(
                                 user['displayName'],
-                                style: const TextStyle(
-                                  color: CupertinoColors.systemPink,
+                                style: TextStyle(
+                                  color: mainColor,
                                   fontWeight: FontWeight.w700,
                                   fontSize: 23,
                                 ),
@@ -220,8 +220,8 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
                                   user['displayName'][0]
                                       .toString()
                                       .toUpperCase(),
-                                  style: const TextStyle(
-                                    color: Colors.white54,
+                                  style: TextStyle(
+                                    color: white5,
                                     fontSize: 25,
                                   ),
                                 ),
@@ -345,8 +345,8 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
             ),
             // send post
             Container(
-              decoration: const BoxDecoration(
-                  color: Colors.white12, shape: BoxShape.circle),
+              decoration: BoxDecoration(
+                  color: whiteX, shape: BoxShape.circle),
               padding: const EdgeInsets.all(10),
               child: GestureDetector(
                 onTap: () {
@@ -357,13 +357,13 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
                   }
                 },
                 child: editMode
-                    ? const Icon(
+                    ? Icon(
                         Icons.check_rounded,
-                        color: Colors.white,
+                        color: white,
                       )
-                    : const Icon(
+                    : Icon(
                         Icons.arrow_upward_rounded,
-                        color: Colors.white,
+                        color: white,
                       ),
               ),
             ),
@@ -379,21 +379,21 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
       builder: (context) {
         return Container(
           height: 250,
-          decoration: const BoxDecoration(
-            borderRadius: BorderRadius.only(
+          decoration: BoxDecoration(
+            borderRadius: const BorderRadius.only(
               topLeft: Radius.circular(25),
               topRight: Radius.circular(25),
             ),
-            color: Color(0xFF1C1B1F),
+            color: backColor2,
           ),
           child: Scaffold(
-            backgroundColor: Colors.transparent,
+            backgroundColor: transparent,
             appBar: AppBar(
               centerTitle: true,
               title: Text(S.of(context).options),
               toolbarHeight: 25,
               leading: const SizedBox(),
-              backgroundColor: Colors.transparent,
+              backgroundColor: transparent,
             ),
             body: Column(
               children: [

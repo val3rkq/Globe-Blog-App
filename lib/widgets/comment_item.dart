@@ -22,8 +22,8 @@ class CommentItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-        decoration: const BoxDecoration(
-          border: Border(bottom: BorderSide(color: Colors.white12)),
+        decoration: BoxDecoration(
+          border: Border(bottom: BorderSide(color: whiteX)),
         ),
         padding: const EdgeInsets.all(10),
         alignment: Alignment.topLeft,
@@ -64,8 +64,8 @@ class CommentItem extends StatelessWidget {
                             displayName
                                 .toString()
                                 .toUpperCase()[0],
-                            style: const TextStyle(
-                                fontSize: 20, color: Colors.white54),
+                            style: TextStyle(
+                                fontSize: 20, color: white5),
                           ),
                         ) : CircleAvatar(
                           backgroundImage:
@@ -81,7 +81,7 @@ class CommentItem extends StatelessWidget {
                         style: TextStyle(
                           fontSize: 16,
                           fontWeight: FontWeight.bold,
-                          color: Colors.grey.shade200,
+                          color: grey3,
                         ),
                       ),
                     ],
@@ -94,7 +94,7 @@ class CommentItem extends StatelessWidget {
                 Text(
                   getTimeFromTimeStamp(timestamp),
                   style: TextStyle(
-                    color: Colors.grey.shade400,
+                    color: grey4,
                     fontSize: 13
                   ),
                 ),

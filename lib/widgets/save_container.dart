@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:globe/constants.dart';
 
 class MySavesContainer extends StatelessWidget {
   const MySavesContainer({super.key, required this.count, required this.isReplies});
@@ -23,7 +24,7 @@ class MySavesContainer extends StatelessWidget {
               Text(
                 count.toString(),
                 style: TextStyle(
-                  color: Colors.grey.shade200,
+                  color: grey3,
                   fontSize: 30,
                 ),
               ),
@@ -34,7 +35,7 @@ class MySavesContainer extends StatelessWidget {
                 isReplies
                     ? CupertinoIcons.reply_thick_solid
                     : Icons.bookmarks_rounded,
-                color: Colors.grey,
+                color: grey,
                 size: 30,
               ),
             ],

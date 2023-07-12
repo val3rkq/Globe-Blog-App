@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:globe/constants.dart';
 
 class PostTextField extends StatefulWidget {
   const PostTextField({
@@ -28,17 +29,17 @@ class _PostTextFieldState extends State<PostTextField> {
       decoration: InputDecoration(
         hintText: widget.hintText,
         hintStyle: TextStyle(
-          color: Colors.grey[500],
+          color: grey,
         ),
         enabledBorder: OutlineInputBorder(
-          borderSide: const BorderSide(color: Colors.white12),
+          borderSide: BorderSide(color: whiteX),
           borderRadius: BorderRadius.circular(14),
         ),
         focusedBorder: OutlineInputBorder(
-          borderSide: const BorderSide(color: Colors.white12),
+          borderSide: BorderSide(color: whiteX),
           borderRadius: BorderRadius.circular(14),
         ),
-        fillColor: Colors.white10,
+        fillColor: white1,
         filled: true,
         isDense: true,
         contentPadding: EdgeInsets.all(15)

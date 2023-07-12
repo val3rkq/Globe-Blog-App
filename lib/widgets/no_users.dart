@@ -1,3 +1,4 @@
+import 'package:globe/constants.dart';
 import 'package:globe/generated/l10n.dart';
 import 'package:flutter/material.dart';
 
@@ -20,14 +21,14 @@ class NoUsers extends StatelessWidget {
           children: [
             Text(
               '${S.of(context).no_users} ${users.toLowerCase()}',
-              style: const TextStyle(fontSize: 25, color: Colors.grey),
+              style: TextStyle(fontSize: 25, color: grey),
             ),
             const SizedBox(
               height: 10,
             ),
-            const Icon(
+            Icon(
               Icons.no_accounts_rounded,
-              color: Colors.grey,
+              color: grey,
               size: 70,
             )
           ],

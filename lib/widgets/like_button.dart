@@ -19,7 +19,7 @@ class _LikeBtnState extends State<LikeBtn> {
   Widget build(BuildContext context) {
     return Icon(
       widget.isLiked ? CupertinoIcons.heart_solid : CupertinoIcons.heart,
-      color: widget.isLiked ? mainColor : Colors.grey,
+      color: widget.isLiked ? mainColor : grey,
       size: 23,
     );
   }

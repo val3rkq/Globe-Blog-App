@@ -1,3 +1,4 @@
+import 'package:globe/constants.dart';
 import 'package:globe/generated/l10n.dart';
 import 'package:flutter/material.dart';
 
@@ -18,14 +19,14 @@ class UserNotFound extends StatelessWidget {
           children: [
             Text(
               S.of(context).user_is_not_found,
-              style: const TextStyle(fontSize: 20, color: Colors.grey),
+              style: TextStyle(fontSize: 20, color: grey),
             ),
             const SizedBox(
               height: 10,
             ),
-            const Icon(
+            Icon(
               Icons.no_accounts_rounded,
-              color: Colors.grey,
+              color: grey,
               size: 50,
             )
           ],

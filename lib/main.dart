@@ -1,6 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:globe/auth/auth_gate.dart';
+import 'package:globe/constants.dart';
 import 'package:globe/firebase_options.dart';
 import 'package:globe/generated/l10n.dart';
 import 'package:provider/provider.dart';
@@ -36,12 +37,12 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         brightness: Brightness.dark,
         useMaterial3: true,
-        bottomSheetTheme: const BottomSheetThemeData(
-          shape: Border.symmetric(
+        bottomSheetTheme: BottomSheetThemeData(
+          shape: const Border.symmetric(
             vertical: BorderSide.none,
             horizontal: BorderSide.none,
           ),
-          backgroundColor: Color(0xFF1C1B1F),
+          backgroundColor: backColor2,
           elevation: 0,
         ),
       ),

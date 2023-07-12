@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:globe/constants.dart';
 import 'package:globe/generated/l10n.dart';
 import 'package:globe/helpers/display_message.dart';
 import 'package:globe/helpers/when_user_was_online.dart';
@@ -189,7 +190,7 @@ class _FindUsersPageState extends State<FindUsersPage> {
                   decoration: InputDecoration(
                     hintText: S.of(context).search,
                     hintStyle: TextStyle(
-                      color: Colors.grey[500],
+                      color: grey,
                     ),
                     prefixIcon: const Icon(Icons.search_rounded),
                     suffixIcon: IconButton(
@@ -202,14 +203,14 @@ class _FindUsersPageState extends State<FindUsersPage> {
                       },
                     ),
                     enabledBorder: OutlineInputBorder(
-                      borderSide: const BorderSide(color: Colors.white12),
+                      borderSide: BorderSide(color: whiteX),
                       borderRadius: BorderRadius.circular(14),
                     ),
                     focusedBorder: OutlineInputBorder(
-                      borderSide: const BorderSide(color: Colors.white12),
+                      borderSide: BorderSide(color: whiteX),
                       borderRadius: BorderRadius.circular(14),
                     ),
-                    fillColor: Colors.white10,
+                    fillColor: white1,
                     filled: true,
                   ),
                 ),

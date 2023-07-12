@@ -35,7 +35,7 @@ class SearchTile extends StatelessWidget {
                   S.of(context).follower,
                   style: TextStyle(
                     fontSize: 15,
-                    color: Colors.grey.withOpacity(0.65),
+                    color: grey.withOpacity(0.65),
                   ),
                 )
               : const SizedBox(),
@@ -44,7 +44,7 @@ class SearchTile extends StatelessWidget {
                   S.of(context).following,
                   style: TextStyle(
                     fontSize: 15,
-                    color: Colors.grey.withOpacity(0.65),
+                    color: grey.withOpacity(0.65),
                   ),
                 )
               : const SizedBox(),
@@ -61,8 +61,8 @@ class SearchTile extends StatelessWidget {
               margin: const EdgeInsets.only(top: 1.5),
               decoration: BoxDecoration(
                 color: subtitle == 'online'
-                    ? Colors.lightGreenAccent
-                    : Colors.grey,
+                    ? onlineColor
+                    : grey,
                 shape: BoxShape.circle,
               ),
             ),
@@ -73,8 +73,8 @@ class SearchTile extends StatelessWidget {
               subtitle,
               style: TextStyle(
                 color: subtitle == 'online'
-                    ? Colors.lightGreenAccent
-                    : Colors.grey,
+                    ? onlineColor
+                    : grey,
               ),
             ),
           ],
@@ -91,7 +91,7 @@ class SearchTile extends StatelessWidget {
             ? Center(
                 child: Text(
                   title.toString().toUpperCase()[0],
-                  style: const TextStyle(fontSize: 30, color: Colors.white54),
+                  style: TextStyle(fontSize: 30, color: white5),
                 ),
               )
             : CircleAvatar(

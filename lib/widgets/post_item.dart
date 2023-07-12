@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
+import 'package:globe/constants.dart';
 import 'package:globe/helpers/display_message.dart';
 import 'package:globe/helpers/format_count_of_sth.dart';
 import 'package:globe/helpers/get_time_from_timestamp.dart';
@@ -103,8 +104,7 @@ class _PostItemState extends State<PostItem> {
   Widget build(BuildContext context) {
     return Container(
       alignment: Alignment.topRight,
-      color: Colors.transparent,
-          // editNoteIndex == widget.index ? Colors.white38 : Colors.transparent,
+      color: transparent,
       padding: const EdgeInsets.only(right: 5, left: 3.5),
       child: Slidable(
         endActionPane: ActionPane(
@@ -119,8 +119,8 @@ class _PostItemState extends State<PostItem> {
                 // go to replies page
                 goToReplies();
               },
-              backgroundColor: Colors.red.withOpacity(0.9),
-              foregroundColor: Colors.white,
+              backgroundColor: red.withOpacity(0.9),
+              foregroundColor: white,
               icon: CupertinoIcons.reply,
               borderRadius: BorderRadius.circular(15),
             ),
@@ -132,8 +132,8 @@ class _PostItemState extends State<PostItem> {
                     onPressed: (context) {
                       deletePost(widget.index);
                     },
-                    backgroundColor: Colors.black87,
-                    foregroundColor: Colors.white,
+                    backgroundColor: black8,
+                    foregroundColor: white,
                     icon: Icons.delete_rounded,
                     borderRadius: BorderRadius.circular(15),
                   )
@@ -141,8 +141,8 @@ class _PostItemState extends State<PostItem> {
           ],
         ),
         child: Container(
-          decoration: const BoxDecoration(
-            border: Border(bottom: BorderSide(color: Colors.white12)),
+          decoration: BoxDecoration(
+            border: Border(bottom: BorderSide(color: whiteX)),
           ),
           margin: const EdgeInsets.fromLTRB(5, 0, 5, 0),
           padding: const EdgeInsets.fromLTRB(17, 15, 13, 15),
@@ -160,7 +160,7 @@ class _PostItemState extends State<PostItem> {
                     width: 260,
                     child: Text(
                       widget.post['text'],
-                      style: const TextStyle(fontSize: 16, color: Colors.white),
+                      style: TextStyle(fontSize: 16, color: white),
                       softWrap: true,
                     ),
                   ),
@@ -172,7 +172,7 @@ class _PostItemState extends State<PostItem> {
                     onTap: widget.onMoreBtnTap,
                     child: Icon(
                       Icons.more_horiz_rounded,
-                      color: Colors.grey[400],
+                      color: grey4,
                     ),
                   ) : const SizedBox(),
                 ],
@@ -247,7 +247,7 @@ class _PostItemState extends State<PostItem> {
                     alignment: Alignment.bottomRight,
                     child: Text(
                       getTimeFromTimeStamp(widget.post['timestamp']),
-                      style: TextStyle(fontSize: 13, color: Colors.grey[300]),
+                      style: TextStyle(fontSize: 13, color: grey3),
                     ),
                   ),
                 ],

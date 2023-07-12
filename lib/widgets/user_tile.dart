@@ -26,7 +26,7 @@ class UserTile extends StatelessWidget {
               height: 8,
               margin: const EdgeInsets.only(top: 3.5),
               decoration: BoxDecoration(
-                color: subtitle == 'online' ? Colors.lightGreenAccent : Colors.grey[500],
+                color: subtitle == 'online' ? onlineColor : grey,
                 shape: BoxShape.circle,
               ),
             ),
@@ -34,7 +34,7 @@ class UserTile extends StatelessWidget {
             Text(
               subtitle,
               style: TextStyle(
-                color: subtitle == 'online' ? Colors.lightGreenAccent : Colors.grey[500],
+                color: subtitle == 'online' ? onlineColor : grey,
               ),
             ),
           ],
@@ -53,8 +53,8 @@ class UserTile extends StatelessWidget {
             title
                 .toString()
                 .toUpperCase()[0],
-            style: const TextStyle(
-                fontSize: 25, color: Colors.white54),
+            style: TextStyle(
+                fontSize: 25, color: white5),
           ),
         ) : CircleAvatar(
           backgroundImage:

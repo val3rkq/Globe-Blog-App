@@ -88,8 +88,8 @@ class _MyProfileSecondViewState extends State<MyProfileSecondView> {
                     margin: const EdgeInsets.only(top: 1.5),
                     decoration: BoxDecoration(
                       color: user['status'] == 'online'
-                          ? Colors.lightGreenAccent
-                          : Colors.grey[500],
+                          ? onlineColor
+                          : grey,
                       shape: BoxShape.circle,
                     ),
                   ),
@@ -107,8 +107,8 @@ class _MyProfileSecondViewState extends State<MyProfileSecondView> {
             titleTextStyle: TextStyle(
               fontSize: 18,
               color: user['status'] == 'online'
-                  ? Colors.lightGreenAccent
-                  : Colors.grey[500],
+                  ? onlineColor
+                  : grey,
             ),
             leading: IconButton(
               onPressed: () {
@@ -148,8 +148,8 @@ class _MyProfileSecondViewState extends State<MyProfileSecondView> {
                                       user['displayName']
                                           .toString()
                                           .toUpperCase()[0],
-                                      style: const TextStyle(
-                                          fontSize: 35, color: Colors.white54),
+                                      style: TextStyle(
+                                          fontSize: 35, color: white5),
                                     ),
                                   ) : CircleAvatar(
                                 backgroundImage:
@@ -169,7 +169,7 @@ class _MyProfileSecondViewState extends State<MyProfileSecondView> {
                                   user['displayName'],
                                   style: TextStyle(
                                     fontSize: 21,
-                                    color: Colors.grey.shade200,
+                                    color: grey3,
                                   ),
                                 ),
 
@@ -178,7 +178,7 @@ class _MyProfileSecondViewState extends State<MyProfileSecondView> {
                                   user['username'],
                                   style: TextStyle(
                                     fontSize: 17,
-                                    color: Colors.grey.shade500,
+                                    color: grey,
                                   ),
                                 ),
 
@@ -190,9 +190,9 @@ class _MyProfileSecondViewState extends State<MyProfileSecondView> {
                                 Text(
                                   user['bio'],
                                   textAlign: TextAlign.center,
-                                  style: const TextStyle(
+                                  style: TextStyle(
                                     fontSize: 15,
-                                    color: Colors.grey,
+                                    color: grey,
                                   ),
                                 ),
                               ],

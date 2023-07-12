@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:globe/constants.dart';
 
 class MyPasswordTextField extends StatefulWidget {
   MyPasswordTextField({
@@ -28,17 +29,17 @@ class _MyPasswordTextFieldState extends State<MyPasswordTextField> {
       decoration: InputDecoration(
         hintText: widget.hintText,
         hintStyle: TextStyle(
-          color: Colors.grey[500],
+          color: grey,
         ),
         enabledBorder: OutlineInputBorder(
-          borderSide: BorderSide(color: Colors.white12),
+          borderSide: BorderSide(color: whiteX),
           borderRadius: BorderRadius.circular(14),
         ),
         focusedBorder: OutlineInputBorder(
-          borderSide: BorderSide(color: Colors.white12),
+          borderSide: BorderSide(color: whiteX),
           borderRadius: BorderRadius.circular(14),
         ),
-        fillColor: Colors.white10,
+        fillColor: white1,
         filled: true,
         suffixIcon: hidePassword
             ? IconButton(
@@ -49,7 +50,7 @@ class _MyPasswordTextFieldState extends State<MyPasswordTextField> {
                 },
                 icon: Icon(
                   Icons.remove_red_eye,
-                  color: Colors.grey[600],
+                  color: grey6,
                 ),
               )
             : IconButton(
@@ -60,7 +61,7 @@ class _MyPasswordTextFieldState extends State<MyPasswordTextField> {
                 },
                 icon: Icon(
                   CupertinoIcons.eye_slash_fill,
-                  color: Colors.grey[600],
+                  color: grey6,
                 ),
               ),
       ),

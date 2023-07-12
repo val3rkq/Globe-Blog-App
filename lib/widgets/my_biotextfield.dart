@@ -1,3 +1,4 @@
+import 'package:globe/constants.dart';
 import 'package:globe/helpers/scroll_to_bottom.dart';
 import 'package:flutter/material.dart';
 
@@ -46,22 +47,22 @@ class _MyBioTextFieldState extends State<MyBioTextField> {
       maxLength: 300,
       decoration: InputDecoration(
         counterText: '$_bioLength / 300',
-        counterStyle: const TextStyle(
-          color: Colors.grey,
+        counterStyle: TextStyle(
+          color: grey,
         ),
         hintText: widget.hintText,
         hintStyle: TextStyle(
-          color: Colors.grey[500],
+          color: grey,
         ),
         enabledBorder: OutlineInputBorder(
-          borderSide: const BorderSide(color: Colors.white12),
+          borderSide: BorderSide(color: whiteX),
           borderRadius: BorderRadius.circular(14),
         ),
         focusedBorder: OutlineInputBorder(
-          borderSide: const BorderSide(color: Colors.white12),
+          borderSide: BorderSide(color: whiteX),
           borderRadius: BorderRadius.circular(14),
         ),
-        fillColor: Colors.white10,
+        fillColor: white1,
         filled: true,
       ),
     );

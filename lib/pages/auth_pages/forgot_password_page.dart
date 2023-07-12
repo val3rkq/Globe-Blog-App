@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:globe/auth/auth.dart';
+import 'package:globe/constants.dart';
 import 'package:globe/generated/l10n.dart';
 import 'package:provider/provider.dart';
 import 'package:globe/widgets/page_names/for_forgot_password_page.dart';
@@ -41,7 +42,7 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
           children: [
             Text(
               S.of(context).send_us_your_email_to_reset_password,
-              style: TextStyle(color: Colors.grey.shade300, fontSize: 20),
+              style: TextStyle(color: grey3, fontSize: 20),
             ),
             const SizedBox(
               height: 20,

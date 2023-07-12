@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:globe/constants.dart';
 
 class HomeHeaderItem extends StatelessWidget {
   const HomeHeaderItem(
@@ -10,26 +11,26 @@ class HomeHeaderItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.all(10),
-      padding: EdgeInsets.all(10),
+      margin: const EdgeInsets.all(10),
+      padding: const EdgeInsets.all(10),
       width: 100,
       height: 70,
       alignment: Alignment.center,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(15),
-        color: Colors.white10,
+        color: white1,
       ),
       child: Column(
         children: [
           // count
           Text(
             count,
-            style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+            style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
           ),
           // something
           Text(
             something,
-            style: TextStyle(fontWeight: FontWeight.bold),
+            style: const TextStyle(fontWeight: FontWeight.bold),
           ),
         ],
       ),

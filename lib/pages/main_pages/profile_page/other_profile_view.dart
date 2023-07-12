@@ -82,9 +82,7 @@ class _OtherProfileViewState extends State<OtherProfileView> {
                     height: 10,
                     margin: const EdgeInsets.only(top: 1.5),
                     decoration: BoxDecoration(
-                      color: user['status'] == 'online'
-                          ? Colors.lightGreenAccent
-                          : Colors.grey[500],
+                      color: user['status'] == 'online' ? onlineColor : grey,
                       shape: BoxShape.circle,
                     ),
                   ),
@@ -101,9 +99,7 @@ class _OtherProfileViewState extends State<OtherProfileView> {
             ),
             titleTextStyle: TextStyle(
               fontSize: 18,
-              color: user['status'] == 'online'
-                  ? Colors.lightGreenAccent
-                  : Colors.grey[500],
+              color: user['status'] == 'online' ? onlineColor : grey,
             ),
             leading: IconButton(
               onPressed: () {
@@ -147,9 +143,10 @@ class _OtherProfileViewState extends State<OtherProfileView> {
                                         user['displayName']
                                             .toString()
                                             .toUpperCase()[0],
-                                        style: const TextStyle(
-                                            fontSize: 35,
-                                            color: Colors.white54),
+                                        style: TextStyle(
+                                          fontSize: 35,
+                                          color: white5,
+                                        ),
                                       ),
                                     )
                                   : CircleAvatar(
@@ -170,7 +167,7 @@ class _OtherProfileViewState extends State<OtherProfileView> {
                                   user['displayName'],
                                   style: TextStyle(
                                     fontSize: 21,
-                                    color: Colors.grey.shade200,
+                                    color: grey3,
                                   ),
                                 ),
 
@@ -179,7 +176,7 @@ class _OtherProfileViewState extends State<OtherProfileView> {
                                   user['username'],
                                   style: TextStyle(
                                     fontSize: 17,
-                                    color: Colors.grey.shade500,
+                                    color: grey,
                                   ),
                                 ),
 
@@ -191,9 +188,9 @@ class _OtherProfileViewState extends State<OtherProfileView> {
                                 Text(
                                   user['bio'],
                                   textAlign: TextAlign.center,
-                                  style: const TextStyle(
+                                  style: TextStyle(
                                     fontSize: 15,
-                                    color: Colors.grey,
+                                    color: grey,
                                   ),
                                 ),
                               ],

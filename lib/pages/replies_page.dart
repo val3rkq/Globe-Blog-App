@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:globe/constants.dart';
 import 'package:globe/generated/l10n.dart';
 import 'package:globe/helpers/display_message.dart';
 import 'package:globe/helpers/format_count_of_sth.dart';
@@ -92,13 +93,13 @@ class _RepliesPageState extends State<RepliesPage> {
                       // time
                       Text(
                         getTimeFromTimeStamp(post['timestamp']),
-                        style: TextStyle(fontSize: 15, color: Colors.grey[400]),
+                        style: TextStyle(fontSize: 15, color: grey4),
                       ),
 
                       // count of comments
                       Text(
                         '${formatCountOfSth(comments.length)} ${S.of(context).replies}',
-                        style: TextStyle(fontSize: 15, color: Colors.grey[400]),
+                        style: TextStyle(fontSize: 15, color: grey4),
                       ),
                     ],
                   ),
@@ -109,7 +110,7 @@ class _RepliesPageState extends State<RepliesPage> {
                   // post text
                   Text(
                     post['text'],
-                    style: const TextStyle(fontSize: 20, color: Colors.white),
+                    style: TextStyle(fontSize: 20, color: white),
                     softWrap: true,
                   ),
 
@@ -210,12 +211,12 @@ class _RepliesPageState extends State<RepliesPage> {
 
             // send post
             Container(
-              decoration: const BoxDecoration(
-                  color: Colors.white12, shape: BoxShape.circle),
+              decoration: BoxDecoration(
+                  color: whiteX, shape: BoxShape.circle),
               padding: const EdgeInsets.all(10),
               child: GestureDetector(
                 onTap: addNewReply,
-                child: const Icon(Icons.send_rounded, color: Colors.white),
+                child: Icon(Icons.send_rounded, color: white),
               ),
             ),
           ],
