@@ -100,9 +100,12 @@ class Auth extends ChangeNotifier {
 
   // check username (it should be individual)
   Future<bool> checkUsername(String username) async {
+    final String currentUserID = _firebaseAuth.currentUser!.uid;
+
     QuerySnapshot result = await _firebaseFirestore
         .collection('users')
         .where('username', isEqualTo: username)
+        .where('uid', isNotEqualTo: currentUserID)
         .get();
 
     final List<DocumentSnapshot> docs = result.docs;
@@ -204,7 +207,8 @@ class Auth extends ChangeNotifier {
   // upload image to firebase storage
   Future<String> uploadImageToStorage(File image) async {
     //Create a reference to the location you want to upload to in firebase
-    Reference reference = _storage.ref().child("profileImage/${_firebaseAuth.currentUser!.uid}");
+    Reference reference =
+        _storage.ref().child("profileImage/${_firebaseAuth.currentUser!.uid}");
 
     // Upload the image file to Firebase Storage
     await reference.putFile(image);
