@@ -7,10 +7,6 @@ Globe is a dynamic and modern Flutter blog app that allows users to explore, rea
 - User-friendly search functionality for finding specific content.
 - Personalized user profiles for bloggers and readers.
 
-## Installation
-Since this application has not yet been uploaded to google play, you can install it by downloading this ZIP-file on your phone 
-Link on Google Drive: https://drive.google.com/drive/folders/1y4KupRyEG_X5nWm-wFYOTK_R32T-aOW1?usp=drive_link
-
 ## License
 This project is licensed under the MIT License - see the LICENSE file for details.
 
