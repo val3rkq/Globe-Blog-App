@@ -1,4 +1,4 @@
-# GLOBE (Blog Demo App)
+# GLOBE (Blog Demo App) using Firebase
 Globe is a dynamic and modern Flutter blog app that allows users to explore, read, and share captivating blog posts. Built with a sleek design and user-centric features, Globe offers an engaging platform for both bloggers and readers. Firebase was used to create this app.
 
 ## Features
